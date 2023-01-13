@@ -29,12 +29,14 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import { useSelector } from "react-redux";
-import { MenuItem } from "@mui/material";
+import { MenuItem, Toolbar } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-// import FormControl from "@mui/material/FormControl";
+import Chip from "@mui/material/Chip";
+import Input from "@mui/material/Input";
+import FormControl from "@mui/material/FormControl";
 // import FormLabel from "@mui/material/FormLabel";
 
 const useStyles = makeStyles((theme) => ({
@@ -143,6 +145,7 @@ const AddProductForm = () => {
   const [formValues, setFormValues] = React.useState({
     name: "",
     menu: "",
+    calories: 0,
     quantity: 0,
     discountType: "None",
     discountPrice: 0,
@@ -154,11 +157,16 @@ const AddProductForm = () => {
   const [progress, setProgress] = React.useState(0);
   const [previewImage, setPreviewImage] = React.useState(placeholder);
   const [price, setPrice] = React.useState(0);
+  const [fat, setFat] = React.useState(0);
+  const [carb, setCarb] = React.useState(0);
+  const [proteins, setProteins] = React.useState(0);
   const [description, setDescription] = React.useState(null);
   const [enableField, setEnableField] = React.useState(true);
+  const [ingredients, setIngredients] = React.useState([]);
+  const [currValue, setCurrValue] = React.useState("");
   const { enqueueSnackbar } = useSnackbar();
 
-  const { menuData } = useSelector((state) => state.category);
+  const { menuData } = useSelector((state) => state.menu);
 
   const handleChange = (e) => {
     const { id, name, value } = e.target;
@@ -218,6 +226,24 @@ const AddProductForm = () => {
     // console.log("DT::", formValues.discountType);
   };
 
+  const handleKeyUp = (e) => {
+    // console.log(e.keyCode);
+    if (e.keyCode === 32) {
+      setIngredients((oldState) => [...oldState, e.target.value]);
+      setCurrValue("");
+    }
+  };
+
+  const handleChipChange = (e) => {
+    setCurrValue(e.target.value);
+  };
+
+  const handleDelete = (item, index) => {
+    let arr = [...ingredients];
+    arr.splice(index, 1);
+    setIngredients(arr);
+  };
+
   const createProduct = (e) => {
     setIsUploading(true);
     const timeNow = new Date();
@@ -258,6 +284,7 @@ const AddProductForm = () => {
                 ? parseInt(`${price}`)
                 : parseInt(`${formValues.discountPrice}`),
             discountType: formValues.discountType,
+            ingredients: ingredients,
           })
             .then((res) => {
               setIsLoading(false);
@@ -356,7 +383,7 @@ const AddProductForm = () => {
           alignItems="center"
           justifyContent="space-between"
         >
-          <Grid item xs={12} sm={6} md={6}>
+          <Grid item xs={12} sm={4} md={4}>
             <TextValidator
               id="name"
               label="Name"
@@ -376,7 +403,7 @@ const AddProductForm = () => {
             />
           </Grid>
 
-          <Grid item xs={12} sm={6} md={6}>
+          <Grid item xs={12} sm={4} md={4}>
             <SelectValidator
               margin="normal"
               value={formValues.menu}
@@ -397,80 +424,76 @@ const AddProductForm = () => {
                 ))}
             </SelectValidator>
           </Grid>
+
+          <Grid item xs={12} sm={4} md={4}>
+            <TextValidator
+              id="calories"
+              label="Calories"
+              size="small"
+              maxLength={22}
+              variant="outlined"
+              value={formValues.calories}
+              onChange={handleChange}
+              name="calories"
+              fullWidth
+              required
+              inputProps={{
+                maxLength: 22,
+              }}
+              type="number"
+              validators={["required"]}
+              errorMessages={["Product calories is required"]}
+            />
+          </Grid>
         </Grid>
 
         <Grid container spacing={1} padding={1}>
           <Grid item xs={12} sm={6} md={4}>
             <NumberFormat
               customInput={TextField}
-              onValueChange={(values) => setPrice(values.value)}
-              value={price}
+              onValueChange={(values) => setCarb(values.value)}
+              value={carb}
               thousandSeparator={true}
-              prefix={"₦"}
+              suffix={"g"}
               fullWidth
               size="small"
-              placeholder="Enter price"
+              placeholder="Enter carbohydrate amount"
               variant="outlined"
-              label="Price"
+              label="Carbohydrate"
               required
             />
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
-            <Box
-              display="flex"
-              flexDirection="row"
-              justifyContent="space-evenly"
-              alignItems="center"
-            >
-              <TextValidator
-                className={classes.mb}
-                label="Discount Percent"
-                size="small"
-                variant="outlined"
-                disabled={price !== null && !enableField}
-                value={formValues.discountPercent}
-                onChange={handleChange}
-                name="discountPercent"
-                type="number"
-                min={0}
-                inputProps={{
-                  maxLength: 2,
-                }}
-                style={{ paddingRight: 10 }}
-              />
-            </Box>
+            <NumberFormat
+              customInput={TextField}
+              onValueChange={(values) => setProteins(values.value)}
+              value={proteins}
+              thousandSeparator={true}
+              suffix={"g"}
+              fullWidth
+              size="small"
+              placeholder="Enter proteins amount"
+              variant="outlined"
+              label="Proteins"
+              required
+            />
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
-            <Box
-              display={formValues.discountType === "None" ? "none" : "flex"}
-              flexDirection="row"
-              justifyContent="space-between"
-              alignItems="center"
-            >
-              <NumberFormat
-                hidden
-                customInput={TextField}
-                onValueChange={(values) =>
-                  setFormValues((prevData) => ({
-                    ...prevData,
-                    discountPrice: values.value,
-                  }))
-                }
-                value={formValues.discountPrice}
-                thousandSeparator={true}
-                prefix={"₦"}
-                fullWidth
-                disabled={price !== null && enableField === true}
-                size="small"
-                placeholder="Enter price"
-                variant="outlined"
-                name="discountPrice"
-                label="Discount Price"
-                required
-              />
-            </Box>
+            <NumberFormat
+              customInput={TextField}
+              onValueChange={(values) => setFat(values.value)}
+              value={fat}
+              thousandSeparator={true}
+              suffix={"g"}
+              fullWidth
+              size="small"
+              placeholder="Enter fat amount"
+              variant="outlined"
+              label="Fat"
+              required
+            />
           </Grid>
         </Grid>
 
@@ -576,6 +599,35 @@ const AddProductForm = () => {
           </Grid>
         </Grid>
 
+        <br />
+        <Typography>Ingredients</Typography>
+        <FormControl
+          sx={{ padding: 1 }}
+          fullWidth
+          classes={{ root: classes.formControlRoot }}
+        >
+          <div className={"container"}>
+            {ingredients?.map((item, index) => (
+              <Chip
+                size="small"
+                onDelete={() => handleDelete(item, index)}
+                label={item}
+              />
+            ))}
+          </div>
+
+          <Input
+            value={currValue}
+            onChange={handleChipChange}
+            onKeyDown={handleKeyUp}
+            title="Hello"
+            required
+            placeholder="Enter ingredients, press spacebar to save"
+          />
+          <br />
+        </FormControl>
+
+        <br />
         <br />
 
         <QuillEditor

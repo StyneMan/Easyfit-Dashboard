@@ -30,7 +30,7 @@ import {
   setBankData,
   setAboutData,
 } from "./data/store/slice/cms";
-import { setMenuData } from "./data/store/slice/category";
+import { setMenuData } from "./data/store/slice/menu";
 import {
   setDeliveryAgenciesData,
   setDeliveryData,
@@ -102,13 +102,13 @@ function App() {
         dispatch(setBlogData(blog));
       });
 
-      const categoryQuery = query(collection(db, "categories"));
-      onSnapshot(categoryQuery, (querySnapshot) => {
-        const category = [];
+      const menuQuery = query(collection(db, "menus"));
+      onSnapshot(menuQuery, (querySnapshot) => {
+        const menus = [];
         querySnapshot.forEach((doc) => {
-          category.push(doc.data());
+          menus.push(doc.data());
         });
-        dispatch(setMenuData(category));
+        dispatch(setMenuData(menus));
       });
 
       const deliveryQuery = query(collection(db, "delivery"));
@@ -224,7 +224,7 @@ function App() {
             <Signup />
           </PrivateRouteSignup>
 
-          <PrivateRouteDashboard path="/dashboard/dwec">
+          <PrivateRouteDashboard path="/dashboard/easyfit">
             <Dashboard />
           </PrivateRouteDashboard>
 

@@ -179,7 +179,7 @@ const ItemCard = (props) => {
               color="primary"
               onClick={() =>
                 history.push({
-                  pathname: "/dashboard/dwec/cms/blog/update",
+                  pathname: "/dashboard/easyfit/cms/blog/update",
                   state: {
                     id: item?.id,
                     title: item?.title,
@@ -207,7 +207,7 @@ const ItemCard = (props) => {
         <CardActionArea
           onClick={() =>
             history.push({
-              pathname: "/dashboard/dwec/cms/blog:" + item?.id,
+              pathname: "/dashboard/easyfit/cms/blog:" + item?.id,
               state: {
                 title: item?.title,
                 category: item?.category,
@@ -274,7 +274,7 @@ const Blog = () => {
           startIcon={<Add />}
           color="primary"
           variant="contained"
-          onClick={() => history.push("/dashboard/dwec/cms/blog/create")}
+          onClick={() => history.push("/dashboard/easyfit/cms/blog/create")}
         >
           New Post
         </Button>

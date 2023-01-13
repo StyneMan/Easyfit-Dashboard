@@ -76,7 +76,7 @@ const Drawer1 = (props) => {
                 }
               />
             ),
-            to: "/dashboard/dwec",
+            to: "/dashboard/easyfit",
             hasChildren: false,
           },
           {
@@ -93,12 +93,12 @@ const Drawer1 = (props) => {
             to: "",
             hasChildren: true,
             children: [
-              { title: "AdsManager", to: "/dashboard/dwec/cms/ads" },
-              { title: "Blog", to: "/dashboard/dwec/cms/blog" },
-              { title: "Contact us", to: "/dashboard/dwec/cms/contact-us" },
+              { title: "AdsManager", to: "/dashboard/easyfit/cms/ads" },
+              { title: "Blog", to: "/dashboard/easyfit/cms/blog" },
+              { title: "Contact us", to: "/dashboard/easyfit/cms/contact-us" },
               {
                 title: "Privacy Policy",
-                to: "/dashboard/dwec/cms/privacy-policy",
+                to: "/dashboard/easyfit/cms/privacy-policy",
               },
             ],
           },
@@ -113,7 +113,7 @@ const Drawer1 = (props) => {
                 }
               />
             ),
-            to: "/dashboard/dwec/category",
+            to: "/dashboard/easyfit/category",
             hasChildren: false,
           },
           {
@@ -130,11 +130,11 @@ const Drawer1 = (props) => {
             to: "",
             hasChildren: true,
             children: [
-              { title: "Products", to: "/dashboard/dwec/products" },
-              { title: "Add New", to: "/dashboard/dwec/products/create" },
+              { title: "Products", to: "/dashboard/easyfit/products" },
+              { title: "Add New", to: "/dashboard/easyfit/products/create" },
               {
                 title: "Bulk Upload",
-                to: "/dashboard/dwec/products/bulk-upload",
+                to: "/dashboard/easyfit/products/bulk-upload",
               },
             ],
           },
@@ -149,7 +149,7 @@ const Drawer1 = (props) => {
                 }
               />
             ),
-            to: "/dashboard/dwec/orders",
+            to: "/dashboard/easyfit/orders",
             hasChildren: false,
           },
           {
@@ -163,7 +163,7 @@ const Drawer1 = (props) => {
                 }
               />
             ),
-            to: "/dashboard/dwec/deliveries",
+            to: "/dashboard/easyfit/deliveries",
             hasChildren: false,
           },
           {
@@ -177,7 +177,7 @@ const Drawer1 = (props) => {
                 }
               />
             ),
-            to: "/dashboard/dwec/users",
+            to: "/dashboard/easyfit/users",
             hasChildren: false,
           },
           {
@@ -191,7 +191,7 @@ const Drawer1 = (props) => {
                 }
               />
             ),
-            to: "/dashboard/dwec/support",
+            to: "/dashboard/easyfit/support",
             hasChildren: false,
           },
           {
@@ -205,7 +205,7 @@ const Drawer1 = (props) => {
                 }
               />
             ),
-            to: "/dashboard/dwec/profile",
+            to: "/dashboard/easyfit/profile",
             hasChildren: false,
           },
         ]);
@@ -222,7 +222,7 @@ const Drawer1 = (props) => {
                 }
               />
             ),
-            to: "/dashboard/dwec",
+            to: "/dashboard/easyfit",
             hasChildren: false,
           },
           {
@@ -236,7 +236,7 @@ const Drawer1 = (props) => {
                 }
               />
             ),
-            to: "/dashboard/dwec/products",
+            to: "/dashboard/easyfit/products",
             hasChildren: false,
           },
           {
@@ -250,7 +250,7 @@ const Drawer1 = (props) => {
                 }
               />
             ),
-            to: "/dashboard/dwec/orders",
+            to: "/dashboard/easyfit/orders",
             hasChildren: false,
           },
           {
@@ -264,7 +264,7 @@ const Drawer1 = (props) => {
                 }
               />
             ),
-            to: "/dashboard/dwec/deliveries",
+            to: "/dashboard/easyfit/deliveries",
             hasChildren: false,
           },
           {
@@ -278,7 +278,7 @@ const Drawer1 = (props) => {
                 }
               />
             ),
-            to: "/dashboard/dwec/profile",
+            to: "/dashboard/easyfit/profile",
             hasChildren: false,
           },
         ]);
@@ -295,7 +295,7 @@ const Drawer1 = (props) => {
                 }
               />
             ),
-            to: "/dashboard/dwec",
+            to: "/dashboard/easyfit",
             hasChildren: false,
           },
           {
@@ -312,11 +312,11 @@ const Drawer1 = (props) => {
             to: "",
             hasChildren: true,
             children: [
-              { title: "Blog", to: "/dashboard/dwec/cms/blog" },
-              { title: "Contact us", to: "/dashboard/dwec/cms/contact-us" },
+              { title: "Blog", to: "/dashboard/easyfit/cms/blog" },
+              { title: "Contact us", to: "/dashboard/easyfit/cms/contact-us" },
               {
                 title: "Privacy Policy",
-                to: "/dashboard/dwec/cms/privacy-policy",
+                to: "/dashboard/easyfit/cms/privacy-policy",
               },
             ],
           },
@@ -334,11 +334,11 @@ const Drawer1 = (props) => {
             to: "",
             hasChildren: true,
             children: [
-              { title: "Products", to: "/dashboard/dwec/products" },
-              { title: "Add New", to: "/dashboard/dwec/products/create" },
+              { title: "Products", to: "/dashboard/easyfit/products" },
+              { title: "Add New", to: "/dashboard/easyfit/products/create" },
               {
                 title: "Bulk Upload",
-                to: "/dashboard/dwec/products/bulk-upload",
+                to: "/dashboard/easyfit/products/bulk-upload",
               },
             ],
           },
@@ -353,7 +353,7 @@ const Drawer1 = (props) => {
                 }
               />
             ),
-            to: "/dashboard/dwec/orders",
+            to: "/dashboard/easyfit/orders",
             hasChildren: false,
           },
           {
@@ -367,7 +367,7 @@ const Drawer1 = (props) => {
                 }
               />
             ),
-            to: "/dashboard/dwec/deliveries",
+            to: "/dashboard/easyfit/deliveries",
             hasChildren: false,
           },
           {
@@ -381,7 +381,7 @@ const Drawer1 = (props) => {
                 }
               />
             ),
-            to: "/dashboard/dwec/support",
+            to: "/dashboard/easyfit/support",
             hasChildren: false,
           },
           {
@@ -395,7 +395,7 @@ const Drawer1 = (props) => {
                 }
               />
             ),
-            to: "/dashboard/dwec/profile",
+            to: "/dashboard/easyfit/profile",
             hasChildren: false,
           },
         ]);

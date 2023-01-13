@@ -14,7 +14,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { useDispatch, useSelector } from "react-redux";
-// import image from "../../../assets/images/dwec_round.png";
+// import image from "../../../assets/images/easyfit_round.png";
 import {
   AccountCircle,
   BikeScooter,
@@ -85,60 +85,62 @@ function DeliveryDashboard(props) {
       {
         text: "Dashboard",
         icon: <Dashboard />,
-        to: "/dashboard/dwec",
+        to: "/dashboard/easyfit",
         hasChildren: false,
       },
       {
         text: "Completed Deliveries",
         icon: <DoneAllOutlined />,
-        to: "/dashboard/dwec/completed-deliveries",
+        to: "/dashboard/easyfit/completed-deliveries",
         hasChildren: false,
       },
       {
         text: "Pending Deliveries",
         icon: <PendingOutlined />,
-        to: "/dashboard/dwec/pending-deliveries",
+        to: "/dashboard/easyfit/pending-deliveries",
         hasChildren: false,
       },
       {
         text: "Cancelled Deliveries",
         icon: <CancelOutlined />,
-        to: "/dashboard/dwec/cancelled-deliveries",
+        to: "/dashboard/easyfit/cancelled-deliveries",
         hasChildren: false,
       },
       {
         text: "All My Deliveries",
         icon: <BikeScooter />,
-        to: "/dashboard/dwec/all-deliveries",
+        to: "/dashboard/easyfit/all-deliveries",
         hasChildren: false,
       },
       {
         text: "Profile",
         icon: <AccountCircle />,
-        to: "/dashboard/dwec/profile",
+        to: "/dashboard/easyfit/profile",
         hasChildren: false,
       },
     ]);
   }, []);
 
   React.useLayoutEffect(() => {
-    if (location.pathname.includes("/dashboard/dwec/home")) {
+    if (location.pathname.includes("/dashboard/easyfit/home")) {
       setSelectedIndex(0);
     } else if (
-      location.pathname.includes("/dashboard/dwec/completed-deliveries")
+      location.pathname.includes("/dashboard/easyfit/completed-deliveries")
     ) {
       setSelectedIndex(1);
     } else if (
-      location.pathname.includes("/dashboard/dwec/pending-deliveries")
+      location.pathname.includes("/dashboard/easyfit/pending-deliveries")
     ) {
       setSelectedIndex(2);
     } else if (
-      location.pathname.includes("/dashboard/dwec/cancelled-deliveries")
+      location.pathname.includes("/dashboard/easyfit/cancelled-deliveries")
     ) {
       setSelectedIndex(3);
-    } else if (location.pathname.includes("/dashboard/dwec/all-deliveries")) {
+    } else if (
+      location.pathname.includes("/dashboard/easyfit/all-deliveries")
+    ) {
       setSelectedIndex(4);
-    } else if (location.pathname.includes("/dashboard/dwec/profile")) {
+    } else if (location.pathname.includes("/dashboard/easyfit/profile")) {
       setSelectedIndex(5);
     }
   }, [location]);
@@ -356,24 +358,28 @@ function DeliveryDashboard(props) {
         <Toolbar />
         <main>
           <Switch>
-            <Redirect exact from="/dashboard/dwec" to="/dashboard/dwec/home" />
-            <Route path="/dashboard/dwec/home" exact={true}>
+            <Redirect
+              exact
+              from="/dashboard/easyfit"
+              to="/dashboard/easyfit/home"
+            />
+            <Route path="/dashboard/easyfit/home" exact={true}>
               <DeliveryHome />
             </Route>
-            <Route path="/dashboard/dwec/completed-deliveries" exact={true}>
+            <Route path="/dashboard/easyfit/completed-deliveries" exact={true}>
               <CompletedDeliveries />
             </Route>
-            <Route path="/dashboard/dwec/pending-deliveries" exact={true}>
+            <Route path="/dashboard/easyfit/pending-deliveries" exact={true}>
               <PendingDeliveries />
             </Route>
-            <Route path="/dashboard/dwec/cancelled-deliveries" exact={true}>
+            <Route path="/dashboard/easyfit/cancelled-deliveries" exact={true}>
               <CancelledDeliveries />
             </Route>
-            <Route path="/dashboard/dwec/all-deliveries" exact={true}>
+            <Route path="/dashboard/easyfit/all-deliveries" exact={true}>
               <MyDeliveries />
             </Route>
 
-            <Route path="/dashboard/dwec/profile" exact={true}>
+            <Route path="/dashboard/easyfit/profile" exact={true}>
               <Profile />
             </Route>
           </Switch>

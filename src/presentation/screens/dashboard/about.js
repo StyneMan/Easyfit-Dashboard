@@ -19,9 +19,9 @@ const AboutUs = () => {
             About Us
           </Typography>
           <Typography>
-            DWEC Winery Point Of Sale (POS) dashboard for offline purchase.
+            easyfit Winery Point Of Sale (POS) dashboard for offline purchase.
           </Typography>
-          <Typography>Powered by DWEC Winery</Typography>
+          <Typography>Powered by easyfit Winery</Typography>
         </Box>
       </Paper>
     </div>

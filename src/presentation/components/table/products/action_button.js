@@ -173,7 +173,7 @@ const ActionButton = ({ selected }) => {
               <MenuItem
                 onClick={() =>
                   history.push({
-                    pathname: `/dashboard/dwec/products/:${selected?.row?.id}/edit`,
+                    pathname: `/dashboard/easyfit/products/:${selected?.row?.id}/edit`,
                     state: {
                       id: selected?.row?.id,
                       name: selected?.row?.name,

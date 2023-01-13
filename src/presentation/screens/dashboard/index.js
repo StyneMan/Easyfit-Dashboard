@@ -57,7 +57,7 @@ import {
   onSnapshot,
   orderBy,
 } from "../../../data/firebase";
-import { setMenuData } from "../../../data/store/slice/category";
+import { setMenuData } from "../../../data/store/slice/menu";
 import {
   setDeliveryAgenciesData,
   setDeliveryData,
@@ -82,8 +82,7 @@ import FAQs from "./tabs/cms/faqs";
 import Sales from "./tabs/sales";
 import { setSalesData } from "../../../data/store/slice/sales";
 import { Calculate } from "@mui/icons-material";
-// import Calculator from "../../components/calculator";
-// import { Clock } from "../../components/clock";
+
 import SalesDashboard from "./sales_dashboard";
 import PaymentProofs from "./tabs/proofs";
 import { setProofsData } from "../../../data/store/slice/proofs";
@@ -294,13 +293,13 @@ function Dashboard(props) {
         dispatch(setBlogData(blog));
       });
 
-      const categoryQuery = query(collection(db, "categories"));
-      onSnapshot(categoryQuery, (querySnapshot) => {
-        const category = [];
+      const menuQuery = query(collection(db, "menus"));
+      onSnapshot(menuQuery, (querySnapshot) => {
+        const menus = [];
         querySnapshot.forEach((doc) => {
-          category.push(doc.data());
+          menus.push(doc.data());
         });
-        dispatch(setMenuData(category));
+        dispatch(setMenuData(menus));
       });
 
       const deliveryQuery = query(collection(db, "deliveries"));
@@ -552,182 +551,197 @@ function Dashboard(props) {
                 <Switch>
                   <Redirect
                     exact
-                    from="/dashboard/dwec"
-                    to="/dashboard/dwec/home"
+                    from="/dashboard/easyfit"
+                    to="/dashboard/easyfit/home"
                   />
-                  <Route path="/dashboard/dwec/home" exact={true}>
+                  <Route path="/dashboard/easyfit/home" exact={true}>
                     <HomePage />
                   </Route>
-                  <Route path="/dashboard/dwec/products" exact={true}>
+                  <Route path="/dashboard/easyfit/products" exact={true}>
                     <Products />
                   </Route>
-                  <Route path="/dashboard/dwec/products/create" exact={true}>
+                  <Route path="/dashboard/easyfit/products/create" exact={true}>
                     <AddProductForm />
                   </Route>
-                  <Route path="/dashboard/dwec/products/:id/edit" exact={true}>
+                  <Route
+                    path="/dashboard/easyfit/products/:id/edit"
+                    exact={true}
+                  >
                     <EditProductForm />
                   </Route>
 
                   <Route
-                    path="/dashboard/dwec/products/bulk-upload"
+                    path="/dashboard/easyfit/products/bulk-upload"
                     exact={true}
                   >
                     <BulkUpload />
                   </Route>
 
-                  <Route path="/dashboard/dwec/orders" exact={true}>
+                  <Route path="/dashboard/easyfit/orders" exact={true}>
                     <Orders />
                   </Route>
-                  <Route path="/dashboard/dwec/orders/:id" exact={true}>
+                  <Route path="/dashboard/easyfit/orders/:id" exact={true}>
                     <OrdersPreview />
                   </Route>
                   <Route
-                    path="/dashboard/dwec/orders/:id/shipping"
+                    path="/dashboard/easyfit/orders/:id/shipping"
                     exact={true}
                   >
                     <OrderShipping />
                   </Route>
 
-                  <Route path="/dashboard/dwec/payment-proofs" exact={true}>
+                  <Route path="/dashboard/easyfit/payment-proofs" exact={true}>
                     <PaymentProofs />
                   </Route>
-                  <Route path="/dashboard/dwec/sales" exact={true}>
+                  <Route path="/dashboard/easyfit/sales" exact={true}>
                     <Sales />
                   </Route>
-                  <Route path="/dashboard/dwec/deliveries" exact={true}>
+                  <Route path="/dashboard/easyfit/deliveries" exact={true}>
                     <Delivery />
                   </Route>
-                  <Route path="/dashboard/dwec/delivery-agencies" exact={true}>
+                  <Route
+                    path="/dashboard/easyfit/delivery-agencies"
+                    exact={true}
+                  >
                     <DeliveryAgencies />
                   </Route>
                   <Route
-                    path="/dashboard/dwec/delivery-agencies/:id"
+                    path="/dashboard/easyfit/delivery-agencies/:id"
                     exact={true}
                   >
                     <DeliveryAgencyPreview />
                   </Route>
 
                   <Route
-                    path="/dashboard/dwec/delivery-agencies/:id/agents/:ke"
+                    path="/dashboard/easyfit/delivery-agencies/:id/agents/:ke"
                     exact={true}
                   >
                     <DeliveryAgentPreview />
                   </Route>
 
                   <Route
-                    path="/dashboard/dwec/deliveries-agencies/create"
+                    path="/dashboard/easyfit/deliveries-agencies/create"
                     exact={true}
                   >
                     <AddDeliveryAgency />
                   </Route>
                   <Route
-                    path="/dashboard/dwec/delivery-agencies/:id/edit"
+                    path="/dashboard/easyfit/delivery-agencies/:id/edit"
                     exact={true}
                   >
                     <EditDeliveryAgency />
                   </Route>
                   <Route
-                    path="/dashboard/dwec/deliveries-agencies/:id/agents/create"
+                    path="/dashboard/easyfit/deliveries-agencies/:id/agents/create"
                     exact={true}
                   >
                     <AddAgentForm />
                   </Route>
                   <Route
-                    path="/dashboard/dwec/deliveries-agencies/:id/agents/:ke/edit"
+                    path="/dashboard/easyfit/deliveries-agencies/:id/agents/:ke/edit"
                     exact={true}
                   >
                     <EditAgentForm />
                   </Route>
 
-                  <Route path="/dashboard/dwec/category" exact={true}>
+                  <Route path="/dashboard/easyfit/menu" exact={true}>
                     <Category />
                   </Route>
-                  <Route path="/dashboard/dwec/support" exact={true}>
+                  <Route path="/dashboard/easyfit/support" exact={true}>
                     <Support />
                   </Route>
-                  <Route path="/dashboard/dwec/cms/faq" exact={true}>
+                  <Route path="/dashboard/easyfit/cms/faq" exact={true}>
                     <FAQs />
                   </Route>
-                  <Route path="/dashboard/dwec/cms/ads" exact={true}>
+                  <Route path="/dashboard/easyfit/cms/ads" exact={true}>
                     <AdsManager />
                   </Route>
-                  <Route path="/dashboard/dwec/cms/ads/create" exact={true}>
+                  <Route path="/dashboard/easyfit/cms/ads/create" exact={true}>
                     <CreateAdsForm />
                   </Route>
-                  <Route path="/dashboard/dwec/cms/ads/update" exact={true}>
+                  <Route path="/dashboard/easyfit/cms/ads/update" exact={true}>
                     <UpdateAdsForm />
                   </Route>
-                  <Route path="/dashboard/dwec/cms/privacy-policy" exact={true}>
+                  <Route
+                    path="/dashboard/easyfit/cms/privacy-policy"
+                    exact={true}
+                  >
                     <PrivacyPolicy />
                   </Route>
-                  <Route path="/dashboard/dwec/cms/contact-us" exact={true}>
+                  <Route path="/dashboard/easyfit/cms/contact-us" exact={true}>
                     <ContactUs />
                   </Route>
                   <Route
-                    path="/dashboard/dwec/cms/contact-us/update"
+                    path="/dashboard/easyfit/cms/contact-us/update"
                     exact={true}
                   >
                     <ContactUsForm />
                   </Route>
                   <Route
-                    path="/dashboard/dwec/cms/contact-us/about/update"
+                    path="/dashboard/easyfit/cms/contact-us/about/update"
                     exact={true}
                   >
                     <UpdateAboutForm />
                   </Route>
                   <Route
-                    path="/dashboard/dwec/cms/privacy-policy/update"
+                    path="/dashboard/easyfit/cms/privacy-policy/update"
                     exact={true}
                   >
                     <UpdatePolicyForm />
                   </Route>
-                  <Route path="/dashboard/dwec/users/" exact={true}>
+                  <Route path="/dashboard/easyfit/users/" exact={true}>
                     <Users />
                   </Route>
-                  <Route path="/dashboard/dwec/users/create-admin" exact={true}>
+                  <Route
+                    path="/dashboard/easyfit/users/create-admin"
+                    exact={true}
+                  >
                     <CreateAdminForm />
                   </Route>
-                  <Route path="/dashboard/dwec/profile" exact={true}>
+                  <Route path="/dashboard/easyfit/profile" exact={true}>
                     <Profile />
                   </Route>
-                  <Route path="/dashboard/dwec/cms/bank" exact={true}>
+                  <Route path="/dashboard/easyfit/cms/bank" exact={true}>
                     <Bank />
                   </Route>
-                  <Route path="/dashboard/dwec/cms/bank/update">
+                  <Route path="/dashboard/easyfit/cms/bank/update">
                     <EditBankInfo />
                   </Route>
-                  <Route path="/dashboard/dwec/cms/blog" exact={true}>
+                  <Route path="/dashboard/easyfit/cms/blog" exact={true}>
                     <Blog />
                   </Route>
-                  <Route path="/dashboard/dwec/cms/blog/create" exact={true}>
+                  <Route path="/dashboard/easyfit/cms/blog/create" exact={true}>
                     <AddBlog />
                   </Route>
-                  <Route path="/dashboard/dwec/cms/blog/update" exact={true}>
+                  <Route path="/dashboard/easyfit/cms/blog/update" exact={true}>
                     <UpdateBlog />
                   </Route>
-                  <Route path="/dashboard/dwec/cms/blog:id" exact={true}>
+                  <Route path="/dashboard/easyfit/cms/blog:id" exact={true}>
                     <BlogDetail />
                   </Route>
-                  <Route path="/dashboard/dwec/stocks" exact={true}>
+                  <Route path="/dashboard/easyfit/stocks" exact={true}>
                     <Stock />
                   </Route>
-                  <Route path="/dashboard/dwec/stocks/create" exact={true}>
+                  <Route path="/dashboard/easyfit/stocks/create" exact={true}>
                     <AddStockForm />
                   </Route>
-                  <Route path="/dashboard/dwec/stocks/:id/edit" exact={true}>
+                  <Route path="/dashboard/easyfit/stocks/:id/edit" exact={true}>
                     <EditStockForm />
                   </Route>
-                  <Route path="/dashboard/dwec/stocks/suppliers" exact={true}>
+                  <Route
+                    path="/dashboard/easyfit/stocks/suppliers"
+                    exact={true}
+                  >
                     <Suppliers />
                   </Route>
                   <Route
-                    path="/dashboard/dwec/stocks/suppliers/create"
+                    path="/dashboard/easyfit/stocks/suppliers/create"
                     exact={true}
                   >
                     <AddSupplier />
                   </Route>
                   <Route
-                    path="/dashboard/dwec/stocks/suppliers/:id/edit"
+                    path="/dashboard/easyfit/stocks/suppliers/:id/edit"
                     exact={true}
                   >
                     <EditSupplierForm />

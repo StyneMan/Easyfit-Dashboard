@@ -54,7 +54,7 @@ const DeliveryAgencyPreview = () => {
           onClick={() =>
             history.push({
               pathname:
-                "/dashboard/dwec/deliveries-agencies/" +
+                "/dashboard/easyfit/deliveries-agencies/" +
                 item?.id +
                 "/agents/create",
               state: { item: item },

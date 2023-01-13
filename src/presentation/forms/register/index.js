@@ -49,8 +49,7 @@ const SignupForm = () => {
             try {
               setDoc(doc(db, "users", resp.user.uid), {
                 id: resp.user.uid,
-                firstname: formValues.firstName,
-                lastname: formValues.lastName,
+                name: formValues.firstName + " " + formValues.lastName,
                 phone: formValues.phone,
                 email: formValues.email,
                 userType: formValues.userType,
@@ -61,7 +60,7 @@ const SignupForm = () => {
                   const docSnap = await getDoc(docRef);
                   if (docSnap.exists()) {
                     dispatch(setUserData(docSnap.data));
-                    history.push("/dashboard/dwec");
+                    history.push("/dashboard/easyfit");
                   } else {
                     console.log("No such document!");
                   }

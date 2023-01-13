@@ -72,7 +72,7 @@ const ActionButton = ({ selected }) => {
               onClick={() =>
                 history.push({
                   pathname:
-                    "/dashboard/dwec/stocks/:" + selected?.row?.id + "/edit",
+                    "/dashboard/easyfit/stocks/:" + selected?.row?.id + "/edit",
                   state: {
                     product: selected?.row?.product,
                     supplier: selected?.row?.supplier,

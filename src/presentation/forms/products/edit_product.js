@@ -161,7 +161,7 @@ const EditProductForm = () => {
   const [description, setDescription] = React.useState(desc);
   const { enqueueSnackbar } = useSnackbar();
 
-  const { menuData } = useSelector((state) => state.category);
+  const { menuData } = useSelector((state) => state.menu);
 
   const handleChange = (e) => {
     const { id, name, value } = e.target;

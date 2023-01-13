@@ -342,7 +342,7 @@ const AdsItem = (props) => {
             color="primary"
             onClick={() =>
               history.push({
-                pathname: "/dashboard/dwec/cms/ads/update",
+                pathname: "/dashboard/easyfit/cms/ads/update",
                 state: {
                   id: item?.id,
                   banner: item?.banner,
@@ -405,7 +405,7 @@ const AdsManager = () => {
           startIcon={<Add />}
           color="primary"
           variant="contained"
-          onClick={() => history.push("/dashboard/dwec/cms/ads/create")}
+          onClick={() => history.push("/dashboard/easyfit/cms/ads/create")}
         >
           Create Ad
         </Button>

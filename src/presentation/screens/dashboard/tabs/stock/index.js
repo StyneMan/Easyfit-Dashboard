@@ -87,7 +87,7 @@ const Stock = () => {
           startIcon={<Add />}
           color="primary"
           variant="contained"
-          onClick={() => history.push("/dashboard/dwec/stocks/create")}
+          onClick={() => history.push("/dashboard/easyfit/stocks/create")}
         >
           Add Stock
         </Button>

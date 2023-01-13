@@ -138,7 +138,7 @@ const ComponentToPrint = forwardRef((props, ref) => {
       >
         <img src={logo} alt="" width={72} />
         <Typography variant="h4" fontWeight={"700"}>
-          DWEC Winery
+          easyfit Winery
         </Typography>
       </Box>
       <Box
@@ -154,7 +154,7 @@ const ComponentToPrint = forwardRef((props, ref) => {
         <Typography
           variant="h6"
           gutterBottom
-        >{`Dear DWEC Winery customer,`}</Typography>
+        >{`Dear easyfit Winery customer,`}</Typography>
         <Typography variant="h6" gutterBottom>
           Thank you for shopping with us.
         </Typography>
@@ -586,7 +586,7 @@ const Receipt = (props) => {
             gutterBottom
             fontWeight="600"
           >
-            DWEC Winery Shop
+            easyfit Winery Shop
           </Typography>
           <Typography fontSize={13}>Unique wine for unique people.</Typography>
         </Box>

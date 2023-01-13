@@ -60,15 +60,20 @@ export default function UsersTable() {
       width: 135,
     },
     {
-      field: "gender",
-      headerName: "GENDER",
-      width: 86,
+      field: "height",
+      headerName: "HEIGHT",
+      width: 135,
+    },
+    {
+      field: "address",
+      headerName: "ADDRESS",
+      width: 160,
       valueGetter: (params) => `${params.row?.gender || ""}`,
     },
     {
-      field: "state",
-      headerName: "STATE",
-      width: 100,
+      field: "landmark",
+      headerName: "LANDMARK",
+      width: 145,
       valueGetter: (params) => `${params.row?.state || ""}`,
     },
     {

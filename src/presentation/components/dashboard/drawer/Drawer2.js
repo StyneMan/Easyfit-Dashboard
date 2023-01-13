@@ -30,11 +30,13 @@ import {
   Inventory,
   ListAlt,
   Payment,
+  Settings,
   ShoppingBag,
   ShoppingCart,
   Support,
   VerifiedUser,
 } from "@mui/icons-material";
+import Menu from "@mui/icons-material/Menu";
 
 const drawerWidth = 270;
 const useStyles = makeStyles((theme) => ({
@@ -47,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: "#9A031E",
+    backgroundColor: theme.palette.primary.main,
   },
   toolbar: theme.mixins.toolbar,
   listRoot: {
@@ -64,6 +66,7 @@ const Drawer2 = (props) => {
   const [openCMS, setOpenCMS] = React.useState(false);
   const [openStocks, setOpenStocks] = React.useState(false);
   const [openProducts, setOpenProducts] = React.useState(false);
+  const [openSettings, setOpenSettings] = React.useState(false);
   const [openDeliveries, setOpenDeliveries] = React.useState(false);
   const [drawerItems, setDrawerItems] = React.useState([]);
 
@@ -77,7 +80,7 @@ const Drawer2 = (props) => {
           {
             text: "Dashboard",
             icon: <Dashboard style={{ color: "white" }} />,
-            to: "/dashboard/dwec",
+            to: "/dashboard/easyfit",
             hasChildren: false,
           },
           {
@@ -86,21 +89,20 @@ const Drawer2 = (props) => {
             to: "",
             hasChildren: true,
             children: [
-              { title: "AdsManager", to: "/dashboard/dwec/cms/ads" },
-              { title: "Bank", to: "/dashboard/dwec/cms/bank" },
-              { title: "Blog", to: "/dashboard/dwec/cms/blog" },
-              { title: "FAQ's", to: "/dashboard/dwec/cms/faq" },
-              { title: "Contact us", to: "/dashboard/dwec/cms/contact-us" },
+              { title: "Slides", to: "/dashboard/easyfit/cms/slides" },
+              { title: "Bank", to: "/dashboard/easyfit/cms/bank" },
+              { title: "FAQ's", to: "/dashboard/easyfit/cms/faq" },
+              { title: "Contact us", to: "/dashboard/easyfit/cms/contact-us" },
               {
                 title: "Privacy Policy",
-                to: "/dashboard/dwec/cms/privacy-policy",
+                to: "/dashboard/easyfit/cms/privacy-policy",
               },
             ],
           },
           {
-            text: "Category",
-            icon: <Category style={{ color: "white" }} />,
-            to: "/dashboard/dwec/category",
+            text: "Menus",
+            icon: <Menu style={{ color: "white" }} />,
+            to: "/dashboard/easyfit/menu",
             hasChildren: false,
           },
           {
@@ -109,26 +111,27 @@ const Drawer2 = (props) => {
             to: "",
             hasChildren: true,
             children: [
-              { title: "Products", to: "/dashboard/dwec/products" },
-              { title: "Add New", to: "/dashboard/dwec/products/create" },
+              { title: "Products", to: "/dashboard/easyfit/products" },
+              { title: "Week's Meal", to: "/dashboard/easyfit/cms/weeks-meal" },
+              { title: "Add New", to: "/dashboard/easyfit/products/create" },
             ],
           },
           {
             text: "Orders",
             icon: <ShoppingCart style={{ color: "white" }} />,
-            to: "/dashboard/dwec/orders",
+            to: "/dashboard/easyfit/orders",
             hasChildren: false,
           },
           {
             text: "Proof of Payments",
             icon: <Payment style={{ color: "white" }} />,
-            to: "/dashboard/dwec/payment-proofs",
+            to: "/dashboard/easyfit/payment-proofs",
             hasChildren: false,
           },
           {
             text: "Sales",
             icon: <ShoppingBag style={{ color: "white" }} />,
-            to: "/dashboard/dwec/sales",
+            to: "/dashboard/easyfit/sales",
             hasChildren: false,
           },
           {
@@ -137,14 +140,14 @@ const Drawer2 = (props) => {
             to: "",
             hasChildren: true,
             children: [
-              { title: "Deliveries", to: "/dashboard/dwec/deliveries" },
+              { title: "Deliveries", to: "/dashboard/easyfit/deliveries" },
               {
                 title: "Delivery Agencies",
-                to: "/dashboard/dwec/delivery-agencies",
+                to: "/dashboard/easyfit/delivery-agencies",
               },
               {
                 title: "Add Delivery Agency",
-                to: "/dashboard/dwec/deliveries-agencies/create",
+                to: "/dashboard/easyfit/deliveries-agencies/create",
               },
             ],
           },
@@ -154,31 +157,45 @@ const Drawer2 = (props) => {
             to: "",
             hasChildren: true,
             children: [
-              { title: "Stocks", to: "/dashboard/dwec/stocks" },
-              { title: "Add Stock", to: "/dashboard/dwec/stocks/create" },
+              { title: "Stocks", to: "/dashboard/easyfit/stocks" },
+              { title: "Add Stock", to: "/dashboard/easyfit/stocks/create" },
               {
                 title: "Suppliers",
-                to: "/dashboard/dwec/stocks/suppliers",
+                to: "/dashboard/easyfit/stocks/suppliers",
               },
             ],
           },
           {
             text: "User Management",
             icon: <VerifiedUser style={{ color: "white" }} />,
-            to: "/dashboard/dwec/users",
+            to: "/dashboard/easyfit/users",
             hasChildren: false,
           },
           {
             text: "Support",
             icon: <Support style={{ color: "white" }} />,
-            to: "/dashboard/dwec/support",
+            to: "/dashboard/easyfit/support",
             hasChildren: false,
           },
           {
-            text: "Profile",
-            icon: <AccountCircle style={{ color: "white" }} />,
-            to: "/dashboard/dwec/profile",
-            hasChildren: false,
+            text: "Settings",
+            icon: <Settings style={{ color: "white" }} />,
+            to: "",
+            hasChildren: true,
+            children: [
+              {
+                title: "Profile",
+                to: "/dashboard/easyfit/settings/profile",
+              },
+              {
+                title: "Delivery Options",
+                to: "/dashboard/easyfit/settings/delivery-options",
+              },
+              {
+                title: "Plan Options",
+                to: "/dashboard/easyfit/settings/profile",
+              },
+            ],
           },
         ]);
       } else if (userData?.userType === "POS Agent") {
@@ -186,37 +203,37 @@ const Drawer2 = (props) => {
           {
             text: "Dashboard",
             icon: <Dashboard style={{ color: "white" }} />,
-            to: "/dashboard/dwec",
+            to: "/dashboard/easyfit",
             hasChildren: false,
           },
           {
             text: "Products",
             icon: <ListAlt style={{ color: "white" }} />,
-            to: "/dashboard/dwec/products",
+            to: "/dashboard/easyfit/products",
             hasChildren: false,
           },
           {
             text: "Sales",
             icon: <ShoppingBag style={{ color: "white" }} />,
-            to: "/dashboard/dwec/sales",
+            to: "/dashboard/easyfit/sales",
             hasChildren: false,
           },
           {
             text: "Orders",
             icon: <ShoppingCart style={{ color: "white" }} />,
-            to: "/dashboard/dwec/orders",
+            to: "/dashboard/easyfit/orders",
             hasChildren: false,
           },
           {
             text: "Deliveries",
             icon: <BikeScooter style={{ color: "white" }} />,
-            to: "/dashboard/dwec/deliveries",
+            to: "/dashboard/easyfit/deliveries",
             hasChildren: false,
           },
           {
             text: "Profile",
             icon: <AccountCircle style={{ color: "white" }} />,
-            to: "/dashboard/dwec/profile",
+            to: "/dashboard/easyfit/profile",
             hasChildren: false,
           },
         ]);
@@ -225,7 +242,7 @@ const Drawer2 = (props) => {
           {
             text: "Dashboard",
             icon: <Dashboard style={{ color: "white" }} />,
-            to: "/dashboard/dwec",
+            to: "/dashboard/easyfit",
             hasChildren: false,
           },
           {
@@ -234,12 +251,12 @@ const Drawer2 = (props) => {
             to: "",
             hasChildren: true,
             children: [
-              { title: "Blog", to: "/dashboard/dwec/cms/blog" },
-              { title: "FAQ's", to: "/dashboard/dwec/cms/faq" },
-              { title: "Contact us", to: "/dashboard/dwec/cms/contact-us" },
+              { title: "Slides", to: "/dashboard/easyfit/cms/slides" },
+              { title: "FAQ's", to: "/dashboard/easyfit/cms/faq" },
+              { title: "Contact us", to: "/dashboard/easyfit/cms/contact-us" },
               {
                 title: "Privacy Policy",
-                to: "/dashboard/dwec/cms/privacy-policy",
+                to: "/dashboard/easyfit/cms/privacy-policy",
               },
             ],
           },
@@ -249,44 +266,44 @@ const Drawer2 = (props) => {
             to: "",
             hasChildren: true,
             children: [
-              { title: "Products", to: "/dashboard/dwec/products" },
-              { title: "Add New", to: "/dashboard/dwec/products/create" },
+              { title: "Products", to: "/dashboard/easyfit/products" },
+              { title: "Add New", to: "/dashboard/easyfit/products/create" },
             ],
           },
           {
             text: "Orders",
             icon: <ShoppingCart style={{ color: "white" }} />,
-            to: "/dashboard/dwec/orders",
+            to: "/dashboard/easyfit/orders",
             hasChildren: false,
           },
           {
             text: "Proof of Payments",
             icon: <Payment style={{ color: "white" }} />,
-            to: "/dashboard/dwec/payment-proofs",
+            to: "/dashboard/easyfit/payment-proofs",
             hasChildren: false,
           },
           {
             text: "Deliveries",
             icon: <BikeScooter style={{ color: "white" }} />,
-            to: "/dashboard/dwec/deliveries",
+            to: "/dashboard/easyfit/deliveries",
             hasChildren: false,
           },
           {
             text: "User Management",
             icon: <VerifiedUser style={{ color: "white" }} />,
-            to: "/dashboard/dwec/users",
+            to: "/dashboard/easyfit/users",
             hasChildren: false,
           },
           {
             text: "Support",
             icon: <Support style={{ color: "white" }} />,
-            to: "/dashboard/dwec/support",
+            to: "/dashboard/easyfit/support",
             hasChildren: false,
           },
           {
             text: "Profile",
             icon: <AccountCircle style={{ color: "white" }} />,
-            to: "/dashboard/dwec/profile",
+            to: "/dashboard/easyfit/profile",
             hasChildren: false,
           },
         ]);
@@ -296,51 +313,53 @@ const Drawer2 = (props) => {
 
   React.useLayoutEffect(() => {
     if (userData && userData?.userType === "Admin") {
-      if (location.pathname.includes("dwec/home")) {
+      if (location.pathname.includes("easyfit/home")) {
         setSelectedIndex(0);
-      } else if (location.pathname.includes("dwec/cms")) {
+      } else if (location.pathname.includes("easyfit/cms")) {
         setSelectedIndex(1);
-      } else if (location.pathname.includes("dwec/category")) {
+      } else if (location.pathname.includes("easyfit/category")) {
         setSelectedIndex(2);
-      } else if (location.pathname.includes("dwec/products")) {
+      } else if (location.pathname.includes("easyfit/products")) {
         setSelectedIndex(3);
-      } else if (location.pathname.includes("dwec/orders")) {
+      } else if (location.pathname.includes("easyfit/orders")) {
         setSelectedIndex(4);
-      } else if (location.pathname.includes("dwec/payment-proofs")) {
+      } else if (location.pathname.includes("easyfit/payment-proofs")) {
         setSelectedIndex(5);
-      } else if (location.pathname.includes("dwec/sales")) {
+      } else if (location.pathname.includes("easyfit/sales")) {
         setSelectedIndex(6);
-      } else if (location.pathname.includes("dwec/deliveries")) {
+      } else if (location.pathname.includes("easyfit/deliveries")) {
         setSelectedIndex(7);
-      } else if (location.pathname.includes("dwec/stocks")) {
+      } else if (location.pathname.includes("easyfit/stocks")) {
         setSelectedIndex(8);
-      } else if (location.pathname.includes("dwec/users")) {
+      } else if (location.pathname.includes("easyfit/users")) {
         setSelectedIndex(9);
-      } else if (location.pathname.includes("dwec/support")) {
+      } else if (location.pathname.includes("easyfit/support")) {
         setSelectedIndex(10);
-      } else if (location.pathname.includes("dwec/profile")) {
+      } else if (location.pathname.includes("easyfit/settings")) {
         setSelectedIndex(11);
       }
     } else {
-      if (location.pathname.includes("/dashboard/dwec/home")) {
+      if (location.pathname.includes("/dashboard/easyfit/home")) {
         setSelectedIndex(0);
-      } else if (location.pathname.includes("/dashboard/dwec/cms")) {
+      } else if (location.pathname.includes("/dashboard/easyfit/cms")) {
         setSelectedIndex(1);
-      } else if (location.pathname.includes("/dashboard/dwec/category")) {
+      } else if (location.pathname.includes("/dashboard/easyfit/category")) {
         setSelectedIndex(2);
-      } else if (location.pathname.includes("/dashboard/dwec/products")) {
+      } else if (location.pathname.includes("/dashboard/easyfit/products")) {
         setSelectedIndex(3);
-      } else if (location.pathname.includes("/dashboard/dwec/orders")) {
+      } else if (location.pathname.includes("/dashboard/easyfit/orders")) {
         setSelectedIndex(4);
-      } else if (location.pathname.includes("/dashboard/dwec/payment-proofs")) {
+      } else if (
+        location.pathname.includes("/dashboard/easyfit/payment-proofs")
+      ) {
         setSelectedIndex(5);
-      } else if (location.pathname.includes("/dashboard/dwec/deliveries")) {
+      } else if (location.pathname.includes("/dashboard/easyfit/deliveries")) {
         setSelectedIndex(6);
-      } else if (location.pathname.includes("/dashboard/dwec/users")) {
+      } else if (location.pathname.includes("/dashboard/easyfit/users")) {
         setSelectedIndex(7);
-      } else if (location.pathname.includes("/dashboard/dwec/support")) {
+      } else if (location.pathname.includes("/dashboard/easyfit/support")) {
         setSelectedIndex(8);
-      } else if (location.pathname.includes("/dashboard/dwec/profile")) {
+      } else if (location.pathname.includes("/dashboard/easyfit/profile")) {
         setSelectedIndex(9);
       }
     }
@@ -360,6 +379,10 @@ const Drawer2 = (props) => {
 
   const handleStock = () => {
     setOpenStocks(!openStocks);
+  };
+
+  const handleSettings = () => {
+    setOpenSettings(!openSettings);
   };
 
   const dispatch = useDispatch();
@@ -404,8 +427,9 @@ const Drawer2 = (props) => {
           alignItems: "center",
         }}
       >
+        <br />
         <a href="/">
-          <img src={logo} style={{ width: 144 }} alt="site logo" />
+          <img src={logo} style={{ width: 128 }} alt="site logo" />
         </a>
       </div>
       <Divider />
@@ -426,7 +450,8 @@ const Drawer2 = (props) => {
                 return text === "CMS" ||
                   (text === "Products" && userData?.userType !== "POS Agent") ||
                   text === "Inventory/Stocks" ||
-                  (text === "Deliveries" && userData?.userType === "Admin") ? (
+                  (text === "Deliveries" && userData?.userType === "Admin") ||
+                  (text === "Settings" && userData?.userType === "Admin") ? (
                   <div>
                     <ListItem
                       button
@@ -443,6 +468,8 @@ const Drawer2 = (props) => {
                           ? handleProduct
                           : text === "Deliveries"
                           ? handleDelivery
+                          : text === "Settings"
+                          ? handleSettings
                           : handleStock
                       }
                     >
@@ -455,6 +482,8 @@ const Drawer2 = (props) => {
                           ? openProducts
                           : text === "Deliveries"
                           ? openDeliveries
+                          : text === "Settings"
+                          ? openSettings
                           : openStocks
                       ) ? (
                         <ExpandLess />
@@ -470,6 +499,8 @@ const Drawer2 = (props) => {
                           ? openProducts
                           : text === "Deliveries"
                           ? openDeliveries
+                          : text === "Settings"
+                          ? openSettings
                           : openStocks
                       }
                       timeout="auto"

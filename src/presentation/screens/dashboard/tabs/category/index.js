@@ -5,8 +5,8 @@ import { Divider, Typography } from "@mui/material";
 import { Add } from "@mui/icons-material";
 import CustomDialog from "../../../../components/dashboard/dialogs/custom-dialog";
 import DeleteDialog from "../../../../components/dashboard/dialogs/custom-dialog";
-import MenuForm from "../../../../forms/category/new_category_form";
-import EditMenuForm from "../../../../forms/category/update_category";
+import MenuForm from "../../../../forms/menu/new_menu_form";
+import EditMenuForm from "../../../../forms/menu/update_menu";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import IconButton from "@mui/material/IconButton";
@@ -57,21 +57,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CategoryItem = (props) => {
+const MenuItem = (props) => {
   const { image, color, name, id } = props;
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [openDelete, setOpenDelete] = React.useState(false);
   const { enqueueSnackbar } = useSnackbar();
 
-  const deleteCategory = () => {
-    const fileRef = ref(storage, "categories/" + id);
+  const deleteMenu = () => {
+    const fileRef = ref(storage, "menus/" + id);
 
     deleteObject(fileRef)
       .then(async () => {
         // File deleted now delete from firestore,
         try {
-          await deleteDoc(doc(db, "categories", "" + id));
+          await deleteDoc(doc(db, "menus", "" + id));
           setOpenDelete(false);
           enqueueSnackbar(`Item deleted successfully`, { variant: "success" });
         } catch (error) {
@@ -87,7 +87,6 @@ const CategoryItem = (props) => {
           `${error?.message || "Check your internet connection"}`,
           { variant: "error" }
         );
-        // console.log("ErR: ", error);
       });
   };
 
@@ -111,7 +110,7 @@ const CategoryItem = (props) => {
           size="small"
           variant="contained"
           color="error"
-          onClick={deleteCategory}
+          onClick={deleteMenu}
         >
           Delete
         </Button>
@@ -123,7 +122,7 @@ const CategoryItem = (props) => {
     <>
       <CustomDialog
         open={open}
-        title="Update Category"
+        title="Update Menu"
         handleClose={() => setOpen(false)}
         bodyComponent={
           <EditMenuForm
@@ -137,7 +136,7 @@ const CategoryItem = (props) => {
       />
       <DeleteDialog
         open={openDelete}
-        title="Delete Category"
+        title="Delete Menu"
         handleClose={() => setOpenDelete(false)}
         bodyComponent={deleteBody}
       />
@@ -170,16 +169,16 @@ const CategoryItem = (props) => {
   );
 };
 
-const Category = () => {
+const Menu = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const { menuData } = useSelector((state) => state.category);
+  const { menuData } = useSelector((state) => state.menu);
 
   return (
     <div>
       <CustomDialog
         open={open}
-        title="Create New Category"
+        title="Create New Menu"
         handleClose={() => setOpen(false)}
         bodyComponent={<MenuForm setOpen={setOpen} />}
       />
@@ -191,7 +190,7 @@ const Category = () => {
             paddingX={4}
             color="primary.main"
           >
-            Category
+            Menu
           </Typography>
         </div>
         <Button
@@ -200,7 +199,7 @@ const Category = () => {
           variant="contained"
           onClick={() => setOpen(true)}
         >
-          Add Category
+          Add Menu
         </Button>
       </div>
       <br />
@@ -213,7 +212,7 @@ const Category = () => {
           >
             {menuData?.map((_, index) => (
               <Grid item xs={2} sm={4} md={4} key={index}>
-                <CategoryItem
+                <MenuItem
                   id={menuData[index]?.id}
                   image={menuData[index]?.image}
                   name={menuData[index].name}
@@ -228,4 +227,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+export default Menu;

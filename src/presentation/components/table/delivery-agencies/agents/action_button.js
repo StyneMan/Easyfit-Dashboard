@@ -107,7 +107,7 @@ const ActionButton = ({ selected, agencyId }) => {
           onClick={() =>
             history.push({
               pathname:
-                "/dashboard/dwec/delivery-agencies/:" +
+                "/dashboard/easyfit/delivery-agencies/:" +
                 agencyId +
                 "/agents/:" +
                 selected.row.id,
@@ -130,7 +130,7 @@ const ActionButton = ({ selected, agencyId }) => {
               onClick={() =>
                 history.push({
                   pathname:
-                    "/dashboard/dwec/deliveries-agencies/:" +
+                    "/dashboard/easyfit/deliveries-agencies/:" +
                     agencyId +
                     "/agents/:" +
                     selected.row.id +

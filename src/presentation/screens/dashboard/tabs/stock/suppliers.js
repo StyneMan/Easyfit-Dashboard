@@ -88,7 +88,7 @@ const Suppliers = () => {
           color="primary"
           variant="contained"
           onClick={() =>
-            history.push("/dashboard/dwec/stocks/suppliers/create")
+            history.push("/dashboard/easyfit/stocks/suppliers/create")
           }
         >
           Add Supplier

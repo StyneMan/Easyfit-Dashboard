@@ -62,7 +62,7 @@ const PrivacyPolicy = () => {
           variant="contained"
           onClick={() =>
             history.push({
-              pathname: "/dashboard/dwec/cms/privacy-policy/update",
+              pathname: "/dashboard/easyfit/cms/privacy-policy/update",
               state: {
                 body: privacyData?.body,
               },

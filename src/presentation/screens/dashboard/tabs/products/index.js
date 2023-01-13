@@ -29,7 +29,7 @@ const Products = () => {
         <Button
           startIcon={<Add />}
           variant="contained"
-          onClick={() => history.push("/dashboard/dwec/products/create")}
+          onClick={() => history.push("/dashboard/easyfit/products/create")}
         >
           Add Product
         </Button>

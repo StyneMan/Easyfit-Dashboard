@@ -145,7 +145,8 @@ const ActionButton = ({ selected }) => {
         <MenuItem
           onClick={() =>
             history.push({
-              pathname: "/dashboard/dwec/delivery-agencies/" + selected.row.id,
+              pathname:
+                "/dashboard/easyfit/delivery-agencies/" + selected.row.id,
               state: {
                 item: selected?.row,
               },
@@ -163,7 +164,7 @@ const ActionButton = ({ selected }) => {
             <MenuItem
               onClick={() =>
                 history.push({
-                  pathname: `/dashboard/dwec/delivery-agencies/:${selected?.row?.id}/edit`,
+                  pathname: `/dashboard/easyfit/delivery-agencies/:${selected?.row?.id}/edit`,
                   state: {
                     id: selected?.row?.id,
                     name: selected?.row?.name,

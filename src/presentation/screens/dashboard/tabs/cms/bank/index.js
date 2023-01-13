@@ -66,7 +66,7 @@ const Bank = () => {
           variant="contained"
           onClick={() =>
             history.push({
-              pathname: "/dashboard/dwec/cms/bank/update",
+              pathname: "/dashboard/easyfit/cms/bank/update",
               state: {
                 bankName1: bankData?.bankName1,
                 bankBranch1: bankData?.bankBranch1,

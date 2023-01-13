@@ -70,7 +70,7 @@ const LoginForm = () => {
           });
         } else {
           dispatch(setUserData(doc.data()));
-          history.push("/dashboard/dwec");
+          history.push("/dashboard/easyfit");
         }
 
         // console.log("DATA::", doc.data());

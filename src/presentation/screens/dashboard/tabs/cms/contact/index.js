@@ -77,7 +77,7 @@ const ContactUs = () => {
           variant="contained"
           onClick={() =>
             history.push({
-              pathname: "/dashboard/dwec/cms/contact-us/update",
+              pathname: "/dashboard/easyfit/cms/contact-us/update",
               state: {
                 phone: contactData?.phone,
                 phone2: contactData?.phone2,
@@ -163,7 +163,7 @@ const ContactUs = () => {
               variant="contained"
               onClick={() =>
                 history.push({
-                  pathname: "/dashboard/dwec/cms/contact-us/about/update",
+                  pathname: "/dashboard/easyfit/cms/contact-us/about/update",
                   state: {
                     body: aboutData?.body,
                   },

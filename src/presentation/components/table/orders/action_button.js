@@ -160,7 +160,7 @@ const ComponentToPrint = forwardRef((props, ref) => {
       >
         <img src={logo} alt="" width={72} />
         <Typography variant="h4" fontWeight={"700"}>
-          DWEC Winery
+          easyfit Winery
         </Typography>
       </Box>
       <Box
@@ -176,7 +176,7 @@ const ComponentToPrint = forwardRef((props, ref) => {
         <Typography
           variant="h6"
           gutterBottom
-        >{`Dear DWEC Winery customer,`}</Typography>
+        >{`Dear easyfit Winery customer,`}</Typography>
         <Typography variant="h6" gutterBottom>
           Thank you for shopping with us.
         </Typography>
@@ -447,7 +447,7 @@ const ActionButton = ({ selected }) => {
         <MenuItem
           onClick={() =>
             history.push({
-              pathname: "/dashboard/dwec/orders/" + selected?.row?.orderNo,
+              pathname: "/dashboard/easyfit/orders/" + selected?.row?.orderNo,
               state: {
                 item: selected?.row,
               },
@@ -575,7 +575,7 @@ const ActionButton = ({ selected }) => {
                         onClick={() =>
                           history.push({
                             pathname:
-                              "/dashboard/dwec/orders/" +
+                              "/dashboard/easyfit/orders/" +
                               selected?.row?.orderNo +
                               "/shipping",
                             state: {
