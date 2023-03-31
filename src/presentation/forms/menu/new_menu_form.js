@@ -62,7 +62,7 @@ const MenuForm = (props) => {
   const [formValues, setFormValues] = React.useState({
     title: "",
     image: "",
-    color: "",
+    excerpt: "",
   });
   const [file, setFile] = React.useState(null);
   const [isUploading, setIsUploading] = React.useState(false);
@@ -97,7 +97,7 @@ const MenuForm = (props) => {
     setIsUploading(true);
     const timeNow = new Date();
     //First upload image to firebase storage then save to firestore
-    const storageRef = ref(storage, "categories/" + timeNow.getTime());
+    const storageRef = ref(storage, "menus/" + timeNow.getTime());
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on(
@@ -118,21 +118,27 @@ const MenuForm = (props) => {
         setIsUploading(false);
         setIsLoading(true);
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          setDoc(doc(db, "categories", `${timeNow.getTime()}`), {
+          setDoc(doc(db, "menus", `${timeNow.getTime()}`), {
             id: timeNow.getTime().toString(),
             name: formValues.title,
             image: downloadURL,
-            color: formValues.color,
+            excerpt: formValues.excerpt,
           })
             .then((res) => {
               setOpen(false);
               setIsLoading(false);
-              enqueueSnackbar(`New category added successfully`, {
+              enqueueSnackbar(`New menu added successfully`, {
                 variant: "success",
               });
             })
             .catch((error) => {
               setIsLoading(false);
+              enqueueSnackbar(
+                `${error?.message || "Check your internet connection"}`,
+                {
+                  variant: "error",
+                }
+              );
             });
         });
       }
@@ -156,7 +162,7 @@ const MenuForm = (props) => {
       <ValidatorForm onSubmit={createCategory}>
         <TextValidator
           id="title"
-          label="Category name"
+          label="Menu name"
           size="small"
           variant="outlined"
           value={formValues.title}
@@ -165,22 +171,19 @@ const MenuForm = (props) => {
           name="title"
           fullWidth
           validators={["required"]}
-          errorMessages={["Category name is required"]}
+          errorMessages={["Menu name is required"]}
         />
         <br />
         <TextValidator
-          id="color"
-          label="Color code"
+          id="excerpt"
+          label="Short Description"
           size="small"
           variant="outlined"
-          value={formValues.color}
+          value={formValues.excerpt}
           onChange={handleChange}
-          // onBlur={handleBlur}
-          placeholder="e.g #FFFFFF"
-          name="color"
+          placeholder="Enter description"
+          name="excerpt"
           fullWidth
-          validators={["required"]}
-          errorMessages={["Hex color code is required"]}
         />
 
         <br />
@@ -196,8 +199,8 @@ const MenuForm = (props) => {
           accept=".png, .jpg, .jpeg"
           onChange={handleChange}
           validators={["required"]}
-          errorMessages={["Category image is required"]}
-          helperText="Upload category image"
+          errorMessages={["Menu image is required"]}
+          helperText="Upload menu image"
         />
 
         <div>

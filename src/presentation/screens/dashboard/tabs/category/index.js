@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MenuItem = (props) => {
-  const { image, color, name, id } = props;
+  const { image, excerpt, name, id } = props;
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [openDelete, setOpenDelete] = React.useState(false);
@@ -130,7 +130,7 @@ const MenuItem = (props) => {
             img={image}
             name={name}
             id={id}
-            color={color}
+            excerpt={excerpt}
           />
         }
       />
@@ -164,6 +164,9 @@ const MenuItem = (props) => {
             </IconButton>
           </div>
         </div>
+        <Typography variant="body2" gutterBottom>
+          {excerpt}
+        </Typography>
       </Card>
     </>
   );
@@ -215,8 +218,8 @@ const Menu = () => {
                 <MenuItem
                   id={menuData[index]?.id}
                   image={menuData[index]?.image}
-                  name={menuData[index].name}
-                  color={menuData[index].color}
+                  name={menuData[index]?.name}
+                  excerpt={menuData[index]?.excerpt}
                 />
               </Grid>
             ))}

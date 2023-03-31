@@ -59,11 +59,11 @@ const CircularProgressWithLabel = (props) => {
 
 const EditMenuForm = (props) => {
   const classes = useStyles();
-  let { setOpen, img, name, id, color } = props;
+  let { setOpen, img, name, id, excerpt } = props;
   const [formValues, setFormValues] = React.useState({
     title: name,
     image: "",
-    color: color,
+    excerpt: excerpt,
   });
   const [file, setFile] = React.useState(null);
   const [isUploading, setIsUploading] = React.useState(false);
@@ -77,8 +77,14 @@ const EditMenuForm = (props) => {
     const { id, name, value } = e.target;
 
     if (id === "image") {
-      setFile(e.target.files[0]);
-      setPreviewPassport(URL.createObjectURL(e.target.files[0]));
+      try {
+        if (e.target.files[0]) {
+          setFile(e.target.files[0]);
+          setPreviewPassport(URL.createObjectURL(e.target.files[0]));
+        } else {
+          setPreviewPassport("");
+        }
+      } catch (e) {}
       setFormValues((prevData) => ({
         ...prevData,
         image: e.target.value,
@@ -92,7 +98,7 @@ const EditMenuForm = (props) => {
     setIsUploading(true);
     const timeNow = new Date();
     //First upload image to firebase storage then save to firestore
-    const storageRef = ref(storage, "categories/img_" + timeNow.getTime());
+    const storageRef = ref(storage, "menus/" + timeNow.getTime());
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on(
@@ -111,23 +117,26 @@ const EditMenuForm = (props) => {
         setIsUploading(false);
         setIsLoading(true);
         getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-          const mRef = doc(db, "categories", "img_" + id);
+          const mRef = doc(db, "menus", "" + id);
           try {
             await updateDoc(mRef, {
               name: formValues.title,
-              color: formValues.color,
+              excerpt: formValues.excerpt,
               image: downloadURL,
             });
             setOpen(false);
             setIsLoading(false);
-            enqueueSnackbar(`Category updated successfully`, {
+            enqueueSnackbar(`Menu updated successfully`, {
               variant: "success",
             });
           } catch (error) {
             setIsLoading(false);
-            enqueueSnackbar(`Error updating category`, {
-              variant: "error",
-            });
+            enqueueSnackbar(
+              `${error?.message || "Check your internet connection"}`,
+              {
+                variant: "error",
+              }
+            );
           }
         });
       }
@@ -137,29 +146,29 @@ const EditMenuForm = (props) => {
   const updateCategory = async (e) => {
     setIsLoading(true);
     if (!previewPassport) {
-      console.log("ID: ", id);
-      const mRef = doc(db, "categories", "" + id);
+      // console.log("ID: ", id);
+      const mRef = doc(db, "menus", "" + id);
       try {
         await updateDoc(mRef, {
           name: formValues.title,
-          color: formValues.color,
+          excerpt: formValues.excerpt,
         });
         setOpen(false);
         setIsLoading(false);
-        enqueueSnackbar(`Category updated successfully`, {
+        enqueueSnackbar(`Menu updated successfully`, {
           variant: "success",
         });
       } catch (error) {
         setIsLoading(false);
         enqueueSnackbar(
-          `${error.message || "Check your internet connection"}`,
+          `${error?.message || "Check your internet connection"}`,
           {
             variant: "error",
           }
         );
       }
     } else {
-      const fileRef = ref(storage, "categories/" + id);
+      const fileRef = ref(storage, "menus/" + id);
 
       deleteObject(fileRef)
         .then(() => {
@@ -170,7 +179,12 @@ const EditMenuForm = (props) => {
         })
         .catch((error) => {
           setIsLoading(false);
-          console.log("ErR: ", error);
+          enqueueSnackbar(
+            `${error?.message || "Check your internet connection"}`,
+            {
+              variant: "error",
+            }
+          );
         });
     }
   };
@@ -192,32 +206,27 @@ const EditMenuForm = (props) => {
       <ValidatorForm onSubmit={updateCategory}>
         <TextValidator
           id="title"
-          label="Category name"
+          label="Menu name"
           size="small"
           variant="outlined"
           value={formValues.title}
           onChange={handleChange}
-          // onBlur={handleBlur}
           name="title"
           fullWidth
           validators={["required"]}
-          errorMessages={["Category name is required"]}
+          errorMessages={["Menu name is required"]}
         />
         <br />
 
         <TextValidator
-          id="color"
-          label="Color code"
+          id="excerpt"
+          label="Short description"
           size="small"
           variant="outlined"
-          value={formValues.color}
+          value={formValues.excerpt}
           onChange={handleChange}
-          // onBlur={handleBlur}
-          placeholder="e.g #FFFFFF"
-          name="color"
+          name="excerpt"
           fullWidth
-          validators={["required"]}
-          errorMessages={["Hex color code is required"]}
         />
 
         <br />
@@ -234,7 +243,7 @@ const EditMenuForm = (props) => {
           onChange={handleChange}
           //   validators={["required"]}
           //   errorMessages={["Category image is required"]}
-          helperText="Upload category image"
+          helperText="Upload menu image"
         />
 
         <div>

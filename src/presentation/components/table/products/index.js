@@ -47,8 +47,8 @@ export default function ProductsTable() {
       minWidth: 186,
     },
     {
-      field: "category",
-      headerName: "CATEGORY",
+      field: "menu",
+      headerName: "MENU",
       minWidth: 144,
     },
     {
