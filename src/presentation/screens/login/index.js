@@ -1,15 +1,15 @@
 import * as React from "react";
-import Avatar from "@mui/material/Avatar";
+// import Avatar from "@mui/material/Avatar";
 import CssBaseline from "@mui/material/CssBaseline";
 // import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+// import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 // import { useHistory } from "react-router-dom";
 import LoginForm from "../../forms/login";
-import pattern from "../../../assets/images/pattern.svg";
-import logo from "../../../assets/images/splash_logo.png";
+import image from "../../../assets/images/ic_launcher.png";
+import image2 from "../../../assets/images/sider.jpg";
 import { useMediaQuery, useTheme } from "@mui/material";
 
 const Login = () => {
@@ -40,9 +40,7 @@ const Login = () => {
             height: "100%",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
+          <img src={image} alt="" />
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
@@ -63,11 +61,6 @@ const Login = () => {
           <div
             style={{
               height: "100vh",
-              backgroundImage: "url(" + pattern + ")",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              zIndex: 1000,
             }}
           >
             <Box
@@ -81,7 +74,7 @@ const Login = () => {
                 height: "100%",
               }}
             >
-              <img src={logo} alt="img" width={256} />
+              <img src={image2} alt="img" width={256} />
             </Box>
           </div>
         </Grid>
