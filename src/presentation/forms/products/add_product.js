@@ -29,7 +29,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import { useSelector } from "react-redux";
-import { MenuItem, Toolbar } from "@mui/material";
+import { MenuItem } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -145,8 +145,7 @@ const AddProductForm = () => {
   const [formValues, setFormValues] = React.useState({
     name: "",
     menu: "",
-    calories: 0,
-    quantity: 0,
+    calories: "0",
     discountType: "None",
     discountPrice: 0,
     discountPercent: "",
@@ -260,7 +259,7 @@ const AddProductForm = () => {
       },
       (error) => {
         setIsUploading(false);
-        console.log(error);
+        // console.log(error);
         enqueueSnackbar(
           `${error?.message || "Check your internet connection"}`,
           { variant: "error" }
@@ -275,9 +274,12 @@ const AddProductForm = () => {
             name: formValues.name,
             image: downloadURL,
             menu: formValues.menu,
+            calories: formValues.calories,
+            proteins: proteins + "g",
+            fat: fat + "g",
+            carbs: carb + "g",
             description: description,
             price: parseInt(`${price}`),
-            quantity: formValues.quantity,
             discountPercent: formValues.discountPercent,
             discountPrice:
               formValues.discountPrice === 0
