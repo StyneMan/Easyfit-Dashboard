@@ -18,22 +18,19 @@ import { useSnackbar } from "notistack";
 import { auth } from "../../../../data/firebase";
 import { setUserData } from "../../../../data/store/slice/user";
 
-// import pattern from "../../../../assets/images/pattern.png";
 import {
   AccountCircle,
   BikeScooter,
-  Category,
+  // Category,
   ContentPaste,
   Dashboard,
   ExpandLess,
   ExpandMore,
   Inventory,
   ListAlt,
-  Payment,
   Settings,
   ShoppingBag,
   ShoppingCart,
-  Support,
   VerifiedUser,
 } from "@mui/icons-material";
 import Menu from "@mui/icons-material/Menu";
@@ -64,6 +61,7 @@ const Drawer2 = (props) => {
   const { history } = props;
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const [openCMS, setOpenCMS] = React.useState(false);
+  const [openSales, setOpenSales] = React.useState(false);
   const [openStocks, setOpenStocks] = React.useState(false);
   const [openProducts, setOpenProducts] = React.useState(false);
   const [openSettings, setOpenSettings] = React.useState(false);
@@ -89,10 +87,7 @@ const Drawer2 = (props) => {
             to: "",
             hasChildren: true,
             children: [
-              { title: "Slides", to: "/dashboard/easyfit/cms/slides" },
               { title: "Bank", to: "/dashboard/easyfit/cms/bank" },
-              { title: "FAQ's", to: "/dashboard/easyfit/cms/faq" },
-              { title: "Contact us", to: "/dashboard/easyfit/cms/contact-us" },
               {
                 title: "Privacy Policy",
                 to: "/dashboard/easyfit/cms/privacy-policy",
@@ -112,27 +107,32 @@ const Drawer2 = (props) => {
             hasChildren: true,
             children: [
               { title: "Products", to: "/dashboard/easyfit/products" },
-              { title: "Week's Meal", to: "/dashboard/easyfit/cms/weeks-meal" },
+              {
+                title: "Week's Meal",
+                to: "/dashboard/easyfit/products/week-meal",
+              },
               { title: "Add New", to: "/dashboard/easyfit/products/create" },
             ],
           },
           {
-            text: "Orders",
-            icon: <ShoppingCart style={{ color: "white" }} />,
-            to: "/dashboard/easyfit/orders",
-            hasChildren: false,
-          },
-          {
-            text: "Proof of Payments",
-            icon: <Payment style={{ color: "white" }} />,
-            to: "/dashboard/easyfit/payment-proofs",
-            hasChildren: false,
-          },
-          {
             text: "Sales",
             icon: <ShoppingBag style={{ color: "white" }} />,
-            to: "/dashboard/easyfit/sales",
-            hasChildren: false,
+            to: "",
+            hasChildren: true,
+            children: [
+              {
+                title: "Orders",
+                to: "/dashboard/easyfit/sales/orders",
+              },
+              {
+                title: "POS Sales",
+                to: "/dashboard/easyfit/sales/pos-sales",
+              },
+              {
+                title: "Proof of Payments",
+                to: "/dashboard/easyfit/sales/payment-proofs",
+              },
+            ],
           },
           {
             text: "Deliveries",
@@ -143,11 +143,11 @@ const Drawer2 = (props) => {
               { title: "Deliveries", to: "/dashboard/easyfit/deliveries" },
               {
                 title: "Delivery Agencies",
-                to: "/dashboard/easyfit/delivery-agencies",
+                to: "/dashboard/easyfit/deliveries/agencies",
               },
               {
                 title: "Add Delivery Agency",
-                to: "/dashboard/easyfit/deliveries-agencies/create",
+                to: "/dashboard/easyfit/deliveries/agencies/create",
               },
             ],
           },
@@ -169,12 +169,6 @@ const Drawer2 = (props) => {
             text: "User Management",
             icon: <VerifiedUser style={{ color: "white" }} />,
             to: "/dashboard/easyfit/users",
-            hasChildren: false,
-          },
-          {
-            text: "Support",
-            icon: <Support style={{ color: "white" }} />,
-            to: "/dashboard/easyfit/support",
             hasChildren: false,
           },
           {
@@ -251,9 +245,6 @@ const Drawer2 = (props) => {
             to: "",
             hasChildren: true,
             children: [
-              { title: "Slides", to: "/dashboard/easyfit/cms/slides" },
-              { title: "FAQ's", to: "/dashboard/easyfit/cms/faq" },
-              { title: "Contact us", to: "/dashboard/easyfit/cms/contact-us" },
               {
                 title: "Privacy Policy",
                 to: "/dashboard/easyfit/cms/privacy-policy",
@@ -267,20 +258,28 @@ const Drawer2 = (props) => {
             hasChildren: true,
             children: [
               { title: "Products", to: "/dashboard/easyfit/products" },
+              {
+                title: "Week's Meal",
+                to: "/dashboard/easyfit/products/week-meal",
+              },
               { title: "Add New", to: "/dashboard/easyfit/products/create" },
             ],
           },
           {
-            text: "Orders",
-            icon: <ShoppingCart style={{ color: "white" }} />,
-            to: "/dashboard/easyfit/orders",
-            hasChildren: false,
-          },
-          {
-            text: "Proof of Payments",
-            icon: <Payment style={{ color: "white" }} />,
-            to: "/dashboard/easyfit/payment-proofs",
-            hasChildren: false,
+            text: "Sales",
+            icon: <ShoppingBag style={{ color: "white" }} />,
+            to: "",
+            hasChildren: true,
+            children: [
+              {
+                title: "Orders",
+                to: "/dashboard/easyfit/sales/orders",
+              },
+              {
+                title: "Proof of Payments",
+                to: "/dashboard/easyfit/sales/payment-proofs",
+              },
+            ],
           },
           {
             text: "Deliveries",
@@ -292,12 +291,6 @@ const Drawer2 = (props) => {
             text: "User Management",
             icon: <VerifiedUser style={{ color: "white" }} />,
             to: "/dashboard/easyfit/users",
-            hasChildren: false,
-          },
-          {
-            text: "Support",
-            icon: <Support style={{ color: "white" }} />,
-            to: "/dashboard/easyfit/support",
             hasChildren: false,
           },
           {
@@ -317,26 +310,20 @@ const Drawer2 = (props) => {
         setSelectedIndex(0);
       } else if (location.pathname.includes("easyfit/cms")) {
         setSelectedIndex(1);
-      } else if (location.pathname.includes("easyfit/category")) {
+      } else if (location.pathname.includes("easyfit/menu")) {
         setSelectedIndex(2);
       } else if (location.pathname.includes("easyfit/products")) {
         setSelectedIndex(3);
-      } else if (location.pathname.includes("easyfit/orders")) {
-        setSelectedIndex(4);
-      } else if (location.pathname.includes("easyfit/payment-proofs")) {
-        setSelectedIndex(5);
       } else if (location.pathname.includes("easyfit/sales")) {
-        setSelectedIndex(6);
+        setSelectedIndex(4);
       } else if (location.pathname.includes("easyfit/deliveries")) {
-        setSelectedIndex(7);
+        setSelectedIndex(5);
       } else if (location.pathname.includes("easyfit/stocks")) {
-        setSelectedIndex(8);
+        setSelectedIndex(6);
       } else if (location.pathname.includes("easyfit/users")) {
-        setSelectedIndex(9);
-      } else if (location.pathname.includes("easyfit/support")) {
-        setSelectedIndex(10);
+        setSelectedIndex(7);
       } else if (location.pathname.includes("easyfit/settings")) {
-        setSelectedIndex(11);
+        setSelectedIndex(8);
       }
     } else {
       if (location.pathname.includes("/dashboard/easyfit/home")) {
@@ -357,10 +344,8 @@ const Drawer2 = (props) => {
         setSelectedIndex(6);
       } else if (location.pathname.includes("/dashboard/easyfit/users")) {
         setSelectedIndex(7);
-      } else if (location.pathname.includes("/dashboard/easyfit/support")) {
-        setSelectedIndex(8);
       } else if (location.pathname.includes("/dashboard/easyfit/profile")) {
-        setSelectedIndex(9);
+        setSelectedIndex(8);
       }
     }
   }, [location, userData]);
@@ -371,6 +356,10 @@ const Drawer2 = (props) => {
 
   const handleProduct = () => {
     setOpenProducts(!openProducts);
+  };
+
+  const handleSales = () => {
+    setOpenSales(!openSales);
   };
 
   const handleDelivery = () => {
@@ -429,7 +418,7 @@ const Drawer2 = (props) => {
       >
         <br />
         <a href="/">
-          <img src={logo} style={{ width: 128 }} alt="site logo" />
+          <img src={logo} style={{ width: 75 }} alt="site logo" />
         </a>
       </div>
       <Divider />
@@ -451,6 +440,7 @@ const Drawer2 = (props) => {
                   (text === "Products" && userData?.userType !== "POS Agent") ||
                   text === "Inventory/Stocks" ||
                   (text === "Deliveries" && userData?.userType === "Admin") ||
+                  (text === "Sales" && userData?.userType === "Admin") ||
                   (text === "Settings" && userData?.userType === "Admin") ? (
                   <div>
                     <ListItem
@@ -458,7 +448,7 @@ const Drawer2 = (props) => {
                       style={{
                         borderRadius: 6,
                         backgroundColor:
-                          selectedIndex === index ? "black" : "transparent",
+                          selectedIndex === index ? "#074647" : "transparent",
                       }}
                       selected={selectedIndex === index}
                       onClick={
@@ -470,6 +460,8 @@ const Drawer2 = (props) => {
                           ? handleDelivery
                           : text === "Settings"
                           ? handleSettings
+                          : text === "Sales"
+                          ? handleSales
                           : handleStock
                       }
                     >
@@ -484,6 +476,8 @@ const Drawer2 = (props) => {
                           ? openDeliveries
                           : text === "Settings"
                           ? openSettings
+                          : text === "Sales"
+                          ? openSales
                           : openStocks
                       ) ? (
                         <ExpandLess />
@@ -501,6 +495,8 @@ const Drawer2 = (props) => {
                           ? openDeliveries
                           : text === "Settings"
                           ? openSettings
+                          : text === "Sales"
+                          ? openSales
                           : openStocks
                       }
                       timeout="auto"
@@ -533,7 +529,7 @@ const Drawer2 = (props) => {
                     style={{
                       borderRadius: 6,
                       backgroundColor:
-                        selectedIndex === index ? "black" : "transparent",
+                        selectedIndex === index ? "#074647" : "transparent",
                     }}
                     selected={selectedIndex === index}
                     onClick={() => handleListItemClick(to, index)}

@@ -52,7 +52,7 @@ const DeliveryAgentPreview = () => {
           onClick={() =>
             history.push({
               pathname:
-                "/dashboard/easyfit/deliveries-agencies/:" +
+                "/dashboard/easyfit/deliveries/agencies/:" +
                 agencyId +
                 "/agents/:" +
                 item?.id +

@@ -40,7 +40,7 @@ const Login = () => {
             height: "100%",
           }}
         >
-          <img src={image} alt="" />
+          <img src={image} alt="" width={72} />
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
@@ -74,7 +74,7 @@ const Login = () => {
                 height: "100%",
               }}
             >
-              <img src={image2} alt="img" width={256} />
+              <img src={image2} alt="img" width={"100%"} />
             </Box>
           </div>
         </Grid>

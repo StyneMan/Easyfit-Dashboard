@@ -8,7 +8,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import OrderItemsTable from "./items_table";
 import { Divider, ListItem } from "@mui/material";
 import CurrencyFormat from "react-currency-format";
-import logo from "../../../../assets/images/dwec_round.png";
+import logo from "../../../../assets/images/ic_launcher.png";
 import ReactToPrint from "react-to-print";
 
 const ComponentToPrint = forwardRef((props, ref) => {

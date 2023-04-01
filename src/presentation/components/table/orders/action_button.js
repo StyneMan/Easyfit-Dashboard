@@ -21,7 +21,7 @@ import { BikeScooter, Cancel } from "@mui/icons-material";
 // import OrdersPreview from "./preview";
 import Box from "@mui/system/Box";
 import { Divider, ListItem } from "@mui/material";
-import logo from "../../../../assets/images/dwec_round.png";
+import logo from "../../../../assets/images/ic_launcher.png";
 import { useHistory } from "react-router-dom";
 import ReactToPrint from "react-to-print";
 import CurrencyFormat from "react-currency-format";

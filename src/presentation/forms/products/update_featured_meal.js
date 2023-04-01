@@ -135,18 +135,18 @@ const CircularProgressWithLabel = (props) => {
   );
 };
 
-const EditProductForm = () => {
+const UpdateFeaturedMealForm = () => {
   const classes = useStyles();
   const location = useLocation();
   const history = useHistory();
 
-  let { id, name, menu, desc, amnt, quantity, img, item } = location.state;
+  let { desc, amnt, img, item } = location.state;
 
   const [formValues, setFormValues] = React.useState({
-    name: name,
+    name: item?.name,
     image: "",
-    menu: menu,
-    quantity: quantity,
+    menu: item?.menu,
+    quantity: item?.quantity,
     discountType: item?.discountType ?? "None",
     discountPrice: item?.discountPrice ?? amnt,
     discountPercent: item?.discountPercent ?? "0",
@@ -190,7 +190,7 @@ const EditProductForm = () => {
       let quo = value / 100;
       let divis = price * quo;
       let result = price - divis;
-      // console.log("Dis Pr::", result);
+      //   console.log("Dis Pr::", result);
       setFormValues((prevData) => ({
         ...prevData,
         discountPrice: result,
@@ -218,9 +218,8 @@ const EditProductForm = () => {
 
   const uploadNew = (e) => {
     setIsUploading(true);
-    const timeNow = new Date();
 
-    let storageRef = ref(storage, "products/" + timeNow.getTime());
+    let storageRef = ref(storage, "week_meal/meal");
     let uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on(
@@ -232,14 +231,17 @@ const EditProductForm = () => {
       },
       (error) => {
         setIsUploading(false);
-        console.log(error);
-        enqueueSnackbar(`${error.message}`, { variant: "error" });
+        // console.log(error);
+        enqueueSnackbar(
+          `${error?.message || "Check your internet connection"}`,
+          { variant: "error" }
+        );
       },
       () => {
         setIsUploading(false);
         setIsLoading(true);
         getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-          const mRef = doc(db, "products", `${id}`);
+          const mRef = doc(db, "week_meal", "meal");
           try {
             await updateDoc(mRef, {
               name: formValues.name,
@@ -253,7 +255,7 @@ const EditProductForm = () => {
               discountType: formValues.discountType,
             });
             setIsLoading(false);
-            enqueueSnackbar(`Product updated successfully`, {
+            enqueueSnackbar(`Featured meal updated successfully`, {
               variant: "success",
             });
             history.goBack();
@@ -276,7 +278,7 @@ const EditProductForm = () => {
 
     if (!previewImage) {
       // console.log("ID: ", id);
-      const mRef = doc(db, "products", "" + id);
+      const mRef = doc(db, "week_meal", "meal");
       try {
         await updateDoc(mRef, {
           name: formValues.name,
@@ -290,7 +292,7 @@ const EditProductForm = () => {
         });
 
         setIsLoading(false);
-        enqueueSnackbar(`Product updated successfully`, {
+        enqueueSnackbar(`Featured meal updated successfully`, {
           variant: "success",
         });
         history.goBack();
@@ -304,7 +306,7 @@ const EditProductForm = () => {
         );
       }
     } else {
-      const fileRef = ref(storage, "products/" + id);
+      const fileRef = ref(storage, "week_meal/meal");
 
       deleteObject(fileRef)
         .then(() => {
@@ -315,7 +317,13 @@ const EditProductForm = () => {
         })
         .catch((error) => {
           setIsLoading(false);
-          console.log("ErR: ", error);
+          enqueueSnackbar(
+            `${error?.message || "Check your internet connection"}`,
+            {
+              variant: "error",
+            }
+          );
+          //   console.log("ErR: ", error);
         });
     }
   };
@@ -551,4 +559,4 @@ const EditProductForm = () => {
   );
 };
 
-export default EditProductForm;
+export default UpdateFeaturedMealForm;

@@ -31,14 +31,17 @@ import Products from "./tabs/products";
 import Orders from "./tabs/orders";
 import Delivery from "./tabs/delivery";
 import Category from "./tabs/category";
-import Support from "./tabs/support";
+// import Support from "./tabs/support";
 import AddProductForm from "../../forms/products/add_product";
 import BulkUpload from "./tabs/products/bulk_upload";
 import Blog from "./tabs/cms/blog";
 import BlogDetail from "./tabs/cms/blog/blog_detail";
 import AddBlog from "../../forms/blog/add_blog_post";
 import CreateAdminForm from "../../forms/admin/create_admin_form";
-import { setProductsData } from "../../../data/store/slice/products";
+import {
+  setFeaturedMeal,
+  setProductsData,
+} from "../../../data/store/slice/products";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setAboutData,
@@ -106,6 +109,7 @@ import EditAgentForm from "../../forms/delivery/edit_agent";
 import EditSupplierForm from "../../forms/stock/edit_supplier";
 import EditStockForm from "../../forms/stock/edit_stock";
 import EditBankInfo from "../../forms/bank/edit_bank";
+import WeekMeal from "./tabs/products/week_meal";
 
 const drawerWidth = 270;
 const useStyles = makeStyles((theme) => ({
@@ -293,7 +297,7 @@ function Dashboard(props) {
         dispatch(setBlogData(blog));
       });
 
-      const menuQuery = query(collection(db, "menus"));
+      const menuQuery = query(collection(db, "menus"), orderBy("orderNo"));
       onSnapshot(menuQuery, (querySnapshot) => {
         const menus = [];
         querySnapshot.forEach((doc) => {
@@ -345,6 +349,10 @@ function Dashboard(props) {
           products.push(doc.data());
         });
         dispatch(setProductsData(products));
+      });
+
+      onSnapshot(doc(db, "week_meal", "meal"), (doc) => {
+        dispatch(setFeaturedMeal(doc.data()));
       });
 
       const posTransQuery = query(collection(db, "pos_transactions"));
@@ -564,6 +572,12 @@ function Dashboard(props) {
                     <AddProductForm />
                   </Route>
                   <Route
+                    path="/dashboard/easyfit/products/week-meal"
+                    exact={true}
+                  >
+                    <WeekMeal />
+                  </Route>
+                  <Route
                     path="/dashboard/easyfit/products/:id/edit"
                     exact={true}
                   >
@@ -577,68 +591,74 @@ function Dashboard(props) {
                     <BulkUpload />
                   </Route>
 
-                  <Route path="/dashboard/easyfit/orders" exact={true}>
+                  <Route path="/dashboard/easyfit/sales/orders" exact={true}>
                     <Orders />
                   </Route>
-                  <Route path="/dashboard/easyfit/orders/:id" exact={true}>
+                  <Route
+                    path="/dashboard/easyfit/sales/orders/:id"
+                    exact={true}
+                  >
                     <OrdersPreview />
                   </Route>
                   <Route
-                    path="/dashboard/easyfit/orders/:id/shipping"
+                    path="/dashboard/easyfit/sales/orders/:id/shipping"
                     exact={true}
                   >
                     <OrderShipping />
                   </Route>
 
-                  <Route path="/dashboard/easyfit/payment-proofs" exact={true}>
+                  <Route
+                    path="/dashboard/easyfit/sales/payment-proofs"
+                    exact={true}
+                  >
                     <PaymentProofs />
                   </Route>
-                  <Route path="/dashboard/easyfit/sales" exact={true}>
+                  <Route path="/dashboard/easyfit/sales/pos-sales" exact={true}>
                     <Sales />
                   </Route>
                   <Route path="/dashboard/easyfit/deliveries" exact={true}>
                     <Delivery />
                   </Route>
                   <Route
-                    path="/dashboard/easyfit/delivery-agencies"
+                    path="/dashboard/easyfit/deliveries/agencies"
                     exact={true}
                   >
                     <DeliveryAgencies />
                   </Route>
                   <Route
-                    path="/dashboard/easyfit/delivery-agencies/:id"
+                    path="/dashboard/easyfit/deliveries/agencies/:id"
                     exact={true}
                   >
                     <DeliveryAgencyPreview />
                   </Route>
 
                   <Route
-                    path="/dashboard/easyfit/delivery-agencies/:id/agents/:ke"
+                    path="/dashboard/easyfit/deliveries/agencies/:id/agents/:ke"
                     exact={true}
                   >
                     <DeliveryAgentPreview />
                   </Route>
 
                   <Route
-                    path="/dashboard/easyfit/deliveries-agencies/create"
+                    path="/dashboard/easyfit/deliveries/agencies/create"
                     exact={true}
                   >
                     <AddDeliveryAgency />
                   </Route>
                   <Route
-                    path="/dashboard/easyfit/delivery-agencies/:id/edit"
+                    path="/dashboard/easyfit/deliveries/agencies/:id/edit"
                     exact={true}
                   >
                     <EditDeliveryAgency />
                   </Route>
                   <Route
-                    path="/dashboard/easyfit/deliveries-agencies/:id/agents/create"
+                    path="/dashboard/easyfit/deliveries/agencies/:id/agents/create"
                     exact={true}
                   >
                     <AddAgentForm />
                   </Route>
                   <Route
-                    path="/dashboard/easyfit/deliveries-agencies/:id/agents/:ke/edit"
+                    path="/dashboard/easyfit/deliveries/agencies/:id/agents/:ke/edit"
                     exact={true}
                   >
                     <EditAgentForm />
@@ -647,9 +667,9 @@ function Dashboard(props) {
                   <Route path="/dashboard/easyfit/menu" exact={true}>
                     <Category />
                   </Route>
-                  <Route path="/dashboard/easyfit/support" exact={true}>
+                  {/* <Route path="/dashboard/easyfit/support" exact={true}>
                     <Support />
-                  </Route>
+                  </Route> */}
                   <Route path="/dashboard/easyfit/cms/faq" exact={true}>
                     <FAQs />
                   </Route>

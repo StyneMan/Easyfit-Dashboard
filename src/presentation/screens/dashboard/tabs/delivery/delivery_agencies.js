@@ -87,7 +87,7 @@ const DeliveryAgencies = () => {
           color="primary"
           variant="contained"
           onClick={() =>
-            history.push("/dashboard/easyfit/deliveries-agencies/create")
+            history.push("/dashboard/easyfit/deliveries/agencies/create")
           }
         >
           Add Agency

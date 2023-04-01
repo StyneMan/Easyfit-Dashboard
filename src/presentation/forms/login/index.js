@@ -4,7 +4,7 @@ import { signInUser } from "../../../domain/service";
 import {
   ValidatorForm,
   TextValidator,
-  SelectValidator,
+  // SelectValidator,
 } from "react-material-ui-form-validator";
 import { db, doc, onSnapshot, auth } from "../../../data/firebase";
 
@@ -20,9 +20,9 @@ import { useDispatch } from "react-redux";
 import { useSnackbar } from "notistack";
 import { setUserData } from "../../../data/store/slice/user";
 import { useHistory } from "react-router-dom";
-import { MenuItem } from "@mui/material";
+// import { MenuItem } from "@mui/material";
 
-const userTypes = ["Admin", "Manager", "POS Agent"];
+// const userTypes = ["Admin", "Manager", "POS Agent"];
 
 const LoginForm = () => {
   const [formValues, setFormValues] = React.useState({
@@ -146,7 +146,7 @@ const LoginForm = () => {
           }}
         />
 
-        <SelectValidator
+        {/* <SelectValidator
           margin="normal"
           value={formValues.userType}
           onChange={handleChange}
@@ -163,7 +163,7 @@ const LoginForm = () => {
               {item}
             </MenuItem>
           ))}
-        </SelectValidator>
+        </SelectValidator> */}
 
         <Button
           disabled={isLoading}

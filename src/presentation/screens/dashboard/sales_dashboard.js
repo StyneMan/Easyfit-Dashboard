@@ -14,7 +14,7 @@ import Box from "@mui/system/Box";
 import React, { forwardRef, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSnackbar } from "notistack";
-import logo from "../../../assets/images/dwec_round.png";
+import logo from "../../../assets/images/ic_launcher.png";
 import CurrencyFormat from "react-currency-format";
 import POSTable from "../../components/table/pos";
 import {

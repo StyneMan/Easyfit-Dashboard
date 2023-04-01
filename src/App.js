@@ -37,7 +37,7 @@ import {
 } from "./data/store/slice/deliveries";
 import { setSupportsData } from "./data/store/slice/support";
 import { setOrdersData } from "./data/store/slice/orders";
-import { setProductsData } from "./data/store/slice/products";
+import { setProductsData, setFeaturedMeal } from "./data/store/slice/products";
 
 import NotFound from "./presentation/screens/notfound";
 import { setSuppliersData } from "./data/store/slice/suppliers";
@@ -102,7 +102,7 @@ function App() {
         dispatch(setBlogData(blog));
       });
 
-      const menuQuery = query(collection(db, "menus"));
+      const menuQuery = query(collection(db, "menus"), orderBy("orderNo"));
       onSnapshot(menuQuery, (querySnapshot) => {
         const menus = [];
         querySnapshot.forEach((doc) => {
@@ -172,6 +172,10 @@ function App() {
           products.push(doc.data());
         });
         dispatch(setProductsData(products));
+      });
+
+      onSnapshot(doc(db, "week_meal", "meal"), (doc) => {
+        dispatch(setFeaturedMeal(doc.data()));
       });
 
       const suppliersQuery = query(collection(db, "suppliers"));
