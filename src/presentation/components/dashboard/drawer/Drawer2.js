@@ -9,7 +9,7 @@ import Divider from "@mui/material/Divider";
 import { useLocation, withRouter } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
-import logo from "../../../../assets/images/splash_logo.png";
+import logo from "../../../../assets/images/easylogolight.svg";
 
 import { useDispatch, useSelector } from "react-redux";
 import Skeleton from "@mui/material/Skeleton";
@@ -418,7 +418,7 @@ const Drawer2 = (props) => {
       >
         <br />
         <a href="/">
-          <img src={logo} style={{ width: 75 }} alt="site logo" />
+          <img src={logo} style={{ width: 156 }} alt="site logo" />
         </a>
       </div>
       <Divider />
@@ -558,9 +558,10 @@ const Drawer2 = (props) => {
         style={{
           flexDirection: "column",
           // marginTop: "auto",
+          width: "100%",
           marginRight: "auto",
-          justifyContent: "left",
-          alignItems: "start",
+          justifyContent: "start",
+          alignItems: "center",
           padding: 16,
         }}
       >
@@ -569,8 +570,9 @@ const Drawer2 = (props) => {
           sx={{
             textTransform: "none",
             color: "white",
-            backgroundColor: "black",
+            backgroundColor: "red",
           }}
+          fullWidth
           onClick={signOut}
         >
           Sign Out

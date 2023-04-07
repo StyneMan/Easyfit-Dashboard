@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { Container, Toolbar } from "@mui/material";
-import curve from "../../../../../assets/images/signup_top.png";
+// import curve from "../../../../../assets/images/signup_top.png";
 import AdsSlider from "./components/ads_slider";
 import { useSelector } from "react-redux";
 import LowStock from "./components/low_stock";
@@ -13,15 +13,15 @@ const ItemCard = (props) => {
   let { title, value } = props;
 
   return (
-    <Card elevation={2}>
+    <Card elevation={2} sx={{ backgroundColor: "#40898A" }}>
       <div
         style={{
           position: "relative",
         }}
       >
-        <div style={{ position: "absolute", top: 0, left: 0 }}>
+        {/* <div style={{ position: "absolute", top: 0, left: 0 }}>
           <img src={curve} alt="" width={144} />
-        </div>
+        </div> */}
         <div
           style={{
             display: "flex",
@@ -32,12 +32,13 @@ const ItemCard = (props) => {
             fontWeight={"700"}
             variant={"h4"}
             gutterBottom
+            color={"white"}
             pt={2}
             pb={1}
           >
             {title}
           </Typography>
-          <Typography variant={"h6"} gutterBottom pb={4}>
+          <Typography variant={"h6"} gutterBottom pb={4} color={"white"}>
             {value}
           </Typography>
         </div>

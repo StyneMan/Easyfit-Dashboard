@@ -98,7 +98,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
+    <div style={{ width: "70%" }}>
       <ValidatorForm onSubmit={submitForm} sx={{ mt: 1 }}>
         <TextValidator
           margin="normal"

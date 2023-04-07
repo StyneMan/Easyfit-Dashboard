@@ -5,11 +5,11 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 // import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
+// import Typography from "@mui/material/Typography";
 // import { useHistory } from "react-router-dom";
 import LoginForm from "../../forms/login";
-import image from "../../../assets/images/ic_launcher.png";
-import image2 from "../../../assets/images/sider.jpg";
+import image from "../../../assets/images/easylogodark.svg";
+import image2 from "../../../assets/images/sider2.JPG";
 import { useMediaQuery, useTheme } from "@mui/material";
 
 const Login = () => {
@@ -40,10 +40,11 @@ const Login = () => {
             height: "100%",
           }}
         >
-          <img src={image} alt="" width={72} />
-          <Typography component="h1" variant="h5">
+          <img src={image} alt="" />
+          <br />
+          {/* <Typography component="h1" variant="h5">
             Sign in
-          </Typography>
+          </Typography> */}
           <LoginForm />
         </Box>
       </Grid>
