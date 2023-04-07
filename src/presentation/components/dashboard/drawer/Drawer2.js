@@ -87,7 +87,7 @@ const Drawer2 = (props) => {
             to: "",
             hasChildren: true,
             children: [
-              { title: "Bank", to: "/dashboard/easyfit/cms/bank" },
+              // { title: "Bank", to: "/dashboard/easyfit/cms/bank" },
               {
                 title: "Privacy Policy",
                 to: "/dashboard/easyfit/cms/privacy-policy",
@@ -159,10 +159,10 @@ const Drawer2 = (props) => {
             children: [
               { title: "Stocks", to: "/dashboard/easyfit/stocks" },
               { title: "Add Stock", to: "/dashboard/easyfit/stocks/create" },
-              {
-                title: "Suppliers",
-                to: "/dashboard/easyfit/stocks/suppliers",
-              },
+              // {
+              //   title: "Suppliers",
+              //   to: "/dashboard/easyfit/stocks/suppliers",
+              // },
             ],
           },
           {
@@ -181,14 +181,14 @@ const Drawer2 = (props) => {
                 title: "Profile",
                 to: "/dashboard/easyfit/settings/profile",
               },
-              {
-                title: "Delivery Options",
-                to: "/dashboard/easyfit/settings/delivery-options",
-              },
-              {
-                title: "Plan Options",
-                to: "/dashboard/easyfit/settings/profile",
-              },
+              // {
+              //   title: "Delivery Options",
+              //   to: "/dashboard/easyfit/settings/delivery-options",
+              // },
+              // {
+              //   title: "Plan Options",
+              //   to: "/dashboard/easyfit/settings/profile",
+              // },
             ],
           },
         ]);
